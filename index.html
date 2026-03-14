@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPI Course Robotics Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="logo-text">
+                        <h1>RPI Course Robotics</h1>
+                        <p>Yahboom Robotic Resources</p>
+                    </div>
+                </div>
+                <button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="Toggle dark mode">
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section (only shows on home/search tabs) -->
+    <section class="hero-section" id="hero-section">
+        <div class="hero-background" id="hero-bg">
+            <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1735494035464-94fdd0f8e780?w=1920&q=80')"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1544191046-397b734b0891?w=1920&q=80')"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1581092335878-2d9ff86ca2bf?w=1920&q=80')"></div>
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h2 class="hero-title">Robotics Kits Documentation</h2>
+                <p class="hero-subtitle">Find setup guides, documentation, and code examples for your robotics course.</p>
+                <div class="search-wrapper">
+                    <div class="search-box">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                        <input type="text" id="search" placeholder="Search documentation: servo control, camera setup, SLAM..." autocomplete="off">
+                        <button class="clear-search-btn" id="clear-btn" style="display:none;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="filter-controls" id="filter-controls" style="display:none;">
+                        <input type="checkbox" id="show-filters" style="display:none;">
+                        <label for="show-filters" class="filter-toggle-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                            </svg>
+                            Filter by Kit
+                            <span class="filter-count" id="filter-count" style="display:none;"></span>
+                        </label>
+                        <button class="clear-filters-btn" id="clear-filters" style="display:none;">Clear Filters</button>
+                        <div class="filter-dropdown">
+                            <h4>Filter by Kit:</h4>
+                            <div class="filter-options">
+                                <label class="filter-option"><input type="checkbox" class="kit-filter" value="dofbot" checked><span>DOFBOT-JetsonNANO</span></label>
+                                <label class="filter-option"><input type="checkbox" class="kit-filter" value="rosmaster" checked><span>ROSMASTER X3</span></label>
+                                <label class="filter-option"><input type="checkbox" class="kit-filter" value="raspbot" checked><span>Raspbot V2</span></label>
+                                <label class="filter-option"><input type="checkbox" class="kit-filter" value="dogzilla" checked><span>Dogzilla</span></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tab system -->
+    <div class="tabs-container">
+        <input type="radio" id="tab-home"      name="page-tabs" checked>
+        <input type="radio" id="tab-search"    name="page-tabs">
+        <input type="radio" id="tab-dofbot"    name="page-tabs">
+        <input type="radio" id="tab-rosmaster" name="page-tabs">
+        <input type="radio" id="tab-raspbot"   name="page-tabs">
+        <input type="radio" id="tab-dogzilla"  name="page-tabs">
+
+        <!-- SEARCH RESULTS -->
+        <div class="tab-panel" id="panel-search">
+            <section class="main-content">
+                <div class="container">
+                    <div class="search-results-header">
+                        <h3>Search Results <span id="results-count">(0)</span></h3>
+                        <label for="tab-home" class="btn-secondary clear-search-link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                            Clear Search
+                        </label>
+                    </div>
+                    <div id="search-results-list" class="search-results-list"></div>
+                    <div id="no-results" class="no-results" style="display:none;">
+                        <p>No documentation found matching your search.</p>
+                        <p class="no-results-hint">Try different keywords or clear your filters.</p>
+                        <label for="tab-home" class="btn-outline">Back to Kits</label>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- HOME -->
+        <div class="tab-panel" id="panel-home">
+            <section class="main-content">
+                <div class="container">
+                    <h3 class="section-title">Available Kits</h3>
+                    <div class="kits-grid"></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- KIT DOC PANELS — generated by app.js -->
+        <!-- Each kit gets: a slim doc-header bar + sidebar layout -->
+    </div>
+
+    <footer class="main-footer">
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="hero_effect.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
