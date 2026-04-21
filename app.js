@@ -6,6 +6,20 @@
     'use strict';
 
     // ===========================
+    // AUTO-LOAD IMAGES FROM SERVER
+    // Fetches the images/ folder contents so the
+    // admin picker always shows newly added images.
+    // ===========================
+    fetch('/api/images')
+        .then(r => r.json())
+        .then(data => {
+            if (data.success) window.siteImages = data.images;
+        })
+        .catch(() => {
+            // Running without server (e.g. file://) — siteImages stays empty
+        });
+
+        // ===========================
     // DARK MODE
     // ===========================
     const darkToggle = document.getElementById('dark-mode-toggle');

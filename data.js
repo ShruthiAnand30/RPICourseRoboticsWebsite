@@ -7,13 +7,14 @@ const roboticsKits = [
         id: 'dofbot',
         name: 'DOFBOT-JetsonNANO',
         description: 'The DOFBOT robotic arm utilizes the NVIDIA Jetson Nano platform. Students in Robotics 1 use this platform to explore fundamental robotics concepts through Python programming. In addition to the powerful Jetson platform, the arms are also equipped with a two finger gripper and RGB camera.',
-        image: 'dofbot.jpg',
+        image: 'images/index/dofbot.jpg',
         difficulty: 'Manipulator, Kinematics & Dynamics',
         tags: ['NVIDIA Jetson Nano', 'Python', 'ROS1', 'Visual Servoing'],
         sections: [
             {
                 id: 'introduction',
                 label: 'Introduction',
+                                content: `<h2>Introduction</h2><p>Select a topic from the sidebar to get started.</p>`,
                 children: [
                     {
                         id: 'intro-notes',
@@ -57,7 +58,7 @@ const roboticsKits = [
                         <strong>Note: When the robot arm is gripping objects, it is necessary to control the angle of the gripper. Improper angle setting may cause the servo to stall and burn.</strong>
                     </div>
                     <p>Here is a table of gripper angles, which records the angle that the servo needs to be set to for every 0.5 cm object. You can adjust the angle you set when gripping according to this table to avoid stalling the servo.</p>
-                    <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/motor6_length.jpg" alt="Showing the Object length from the gripper." style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                    <img src="images/Dofbot/First_Trial/First_Trial_1.png" alt="Showing the Object length from the gripper." style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                     <table class="doc-table">
                         <thead><tr><th>Object length (unit: cm)</th><th>Servo angle (unit: degree)</th></tr></thead>
                         <tbody>
@@ -82,6 +83,7 @@ const roboticsKits = [
             {
                 id: 'preparation',
                 label: 'Preparation',
+                                content: `<h2>Preparation</h2><p>Select a topic from the sidebar to get started.</p>`,
                 children: [
                     {
                         id: 'prep-access',
@@ -103,13 +105,13 @@ const roboticsKits = [
                                         <li>Replace <code>192.168.1.67</code> with your actual DOFBOT IP address.</li>
                                         <li>As shown below:</li>
                                     </ul>
-                                    <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/02_01_01_jupyterlogin.png" alt="Jupyter login screen" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                                    <img src="images/Dofbot/Preparation/Accessing_JupyterLab_1.png" alt="Jupyter login screen" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                                 </li>
                                 <li>You will see the Jupyter Lab interface.</li>
                                 <li>Navigate into the <strong>readonly_examples</strong> directory then enter <strong>Dofbot</strong>.</li>
                                 <li>
                                     Inside, you will see several folders. Enter a folder to access the code:
-                                    <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/02_01_05_directory.png" alt="Folder contents" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                                    <img src="images/Dofbot/Preparation/Accessing_JupyterLab_2.png" alt="Folder contents" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                                 </li>
                             </ol>
                         `
@@ -122,13 +124,13 @@ const roboticsKits = [
                             <ol>
                                 <li>
                                     Click the <strong>Run</strong> button in the top menu to execute the code:
-                                    <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/02_01_06_run.png" alt="Run button 1" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
-                                    <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/02_01_07_run.png" alt="Run button 2" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
-                                    <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/02_01_08_run.png" alt="Run button 3" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                                    <img src="images/Dofbot/Preparation/Running_Code_1.png" alt="Run button 1" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                                    <img src="images/Dofbot/Preparation/Running_Code_2.png" alt="Run button 2" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                                    <img src="images/Dofbot/Preparation/Running_Code_3.png" alt="Run button 3" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                                 </li>
                                 <li>
                                     To exit and run another program, click the Kernel menu and open a different file:
-                                    <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/02_01_09_kernel.png" alt="Kernel menu" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                                    <img src="images/images/Dofbot/Preparation/Running_Code_4.png" alt="Kernel menu" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                                 </li>
                             </ol>
                         `
@@ -139,6 +141,7 @@ const roboticsKits = [
             {
                 id: 'basic-control-course',
                 label: 'Basic control course',
+                                content: `<h2>Basic control course</h2><p>Select a topic from the sidebar to get started.</p>`,
                 children: [
                     {
                         id: 'bcc-rgb',
@@ -151,11 +154,11 @@ const roboticsKits = [
                             <p>Enter the following command to decompress the firmware package:</p>
                             <pre><code>tar -vxzf Dofbot.tar.gz</code></pre>
                             <p>After successful decompression, the following interface will appear:</p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/03_01_01_terminal.png" alt="terminal" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/Basic_Control_Course/Control_RGB_Light_1.png" alt="terminal" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                             <p>Then install it into the system through the following command:</p>
                             <pre><code>cd Dofbot/0.py_install && sudo python3 setup.py install</code></pre>
                             <p>Enter the user password and press Enter to confirm. If you see the installation prompt Arm_Lib=x.x.x version number, the installation is successful.</p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/03_01_02_terminal.png" alt="terminal install success" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/Basic_Control_Course/Control_RGB_Light_2.png" alt="terminal install success" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                             <h3>1. API Introduction</h3>
                             <p>The corresponding API for RGB lights is:</p>
                             <p><code>Arm_RGB_set(R, G, B)</code> — Sets the color of the RGB light on the robotic arm.</p>
@@ -193,9 +196,9 @@ except KeyboardInterrupt:
     print(" Program closed! ")
     pass</code></pre>
                             <p>Open the 1.rgb.ipynb file from jupyter lab, and click the "Run" entire notebook button on the jupyter lab toolbar. You can see that the RGB light on the robot arm expansion board lights up red, green, and blue lights in a cycle every 0.5 seconds.</p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/03_01_03_board.png" alt="board light up in RGB" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/Basic_Control_Course/Control_RGB_Light_3.png" alt="board light up in RGB" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                             <p>If you want to quit, click the Stop button on the toolbar.</p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/03_01_04.png" alt="pause button" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/Basic_Control_Course/Control_RGB_Light_4.png" alt="pause button" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                         `
                     },
                     {
@@ -244,7 +247,7 @@ time.sleep(1)
 
 del Arm # Release Arm object</code></pre>
                             <p>Open the 2.beep.ipynb file from jupyter lab and click the Run entire notebook button on the jupyter lab toolbar. You can hear the buzzer on the expansion board beeping three times in a row, and the sound from the back is longer than the sound from the front.</p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/03_02_01.png" alt="run button" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/Basic_Control_Course/Control_Buzzer_1.png" alt="run button" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                             <p>It will automatically exit after the operation is completed.</p>
                         `
                     },
@@ -299,9 +302,9 @@ except KeyboardInterrupt:
 
 del Arm # Release Arm object</code></pre>
                             <p>Open the program file from jupyter lab and click the run entire notebook button on the jupyter lab toolbar. You can see that the claws of the robotic arm are constantly changing angles.</p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/03_03_01_grippershown.png" alt="gripper open and close" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/Basic_Control_Course/Control_Single_Servo_1.png" alt="gripper open and close" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                             <p>If you want to quit, click the Stop button on the toolbar.</p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/03_03_02_StopButton.png" alt="stop button" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/Basic_Control_Course/Control_Single_Servo_2.png" alt="stop button" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                         `
                     },
                     {
@@ -353,9 +356,9 @@ time.sleep(.5)
 
 del Arm # Release Arm object</code></pre>
                             <p>Open the program file from jupyter lab and click the Run entire notebook button on the jupyter lab toolbar. Jupyter lab will print out the angle values of the six servos of the current robotic arm.</p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/03_04_01_servonum.png" alt="run with terminal" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/Basic_Control_Course/Read_Servo_Angle_1.png" alt="run with terminal" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                             <p>If you want to quit, click the Stop button on the toolbar.</p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/03_04_02_StopButton.png" alt="stop button" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/Basic_Control_Course/Read_Servo_Angle_2.png" alt="stop button" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                         `
                     },
                     {
@@ -418,9 +421,9 @@ except KeyboardInterrupt:
 
 del Arm # Release Arm object</code></pre>
                             <p>Open the program file from jupyter lab and click the Run entire notebook button on the jupyter lab toolbar. You can see that the six servos of the robotic arm rotate at the same time and the robotic arm continuously changes its posture.</p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/03_05_01_RunButton.png" alt="run button" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/Basic_Control_Course/Control_All_Servo_1.png" alt="run button" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                             <p>If you want to quit, click the Stop button on the toolbar.</p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/03_04_02_StopButton.png" alt="stop button" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/Basic_Control_Course/Control_All_Servo_2.png" alt="stop button" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                         `
                     },
                     {
@@ -430,7 +433,7 @@ del Arm # Release Arm object</code></pre>
                             <h2>DOFBOT grab block</h2>
                             <h3>1. Game introduction</h3>
                             <p>The purpose of this experiment is to move the blocks from the gray area in the middle to the surrounding square areas of different colors. First put the yellow block into the gray area, and then run the code unit to the sixth unit in sequence (grab a building block from the gray building block and place it on the yellow building block). At this time, the robot arm will automatically grab the block placed in the gray area, then place it in the yellow area, and then return to the ready position. Before running the seventh code unit, you need to place the red block in the gray area, and then run the seventh unit (grab a building block from the gray building block and place it on the red building block). In this way, red squares will also be captured to the red area, and other squares will be operated in the same way.</p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/03_06_01_Block.png" alt="Block arrangement" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/Basic_Control_Course/DOFBOT_Grab_Block_1.png" alt="Block arrangement" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                             <h3>2. Code content</h3>
                             <p>Code path: <code>/home/jetson/Dofbot/3.ctrl_Arm/9.clamp_block.ipynb</code></p>
                             <div class="doc-note warning"><strong>The following code content needs to be executed according to the actual step, and cannot be run all at once. Before picking up the building blocks, you need to place the building blocks on the gray building blocks in the middle, and only one block can be placed at a time.</strong></div>
@@ -537,9 +540,9 @@ del Arm # Release Arm object</code></pre>
                             <h3>1. Introduction to gameplay</h3>
                             <p><strong>The purpose of this experiment is to stack four building blocks of different colors from bottom to top in the order of blue, green, red and yellow, place them on the middle gray square, and then run the code.</strong></p>
                             <p>The robot arm will pick up the fourth layer of blocks and place them in the yellow area, pick up the third layer blocks and place them in the red area, pick up the second layer blocks and put them in the green area, and pick up the bottom blocks and place them in the blue area, Execute in order. The way to place the building blocks is as shown in the figure below:</p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/03_07_01_BlockStacking.png" alt="Block stacking order" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/Basic_Control_Course/Porter_1.png" alt="Block stacking order" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                             <p>After executing the code, the robot arm will carry the building blocks to the corresponding position. The final effect is as shown in the figure below:</p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/03_07_02_BlockSpread.png" alt="Block spread result" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/Basic_Control_Course/Porter_2.png" alt="Block spread result" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                             <h3>2. Code content</h3>
                             <p>Code path: <code>/home/jetson/Dofbot/3.ctrl_Arm/10.move_block.ipynb</code></p>
                             <pre><code>#!/usr/bin/env python3
@@ -640,9 +643,9 @@ del Arm #Release Arm object</code></pre>
                             <h3>1. Introduction to gameplay</h3>
                             <p>The purpose of this experiment is exactly the opposite of the previous lesson "Nature Porter". It is to pick up the building blocks from different sides in the order of yellow, red, green and blue and stack them into the gray area in the middle.</p>
                             <p>The way to place the building blocks is as shown in the figure below:</p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/03_08_01_BlockSpread.png" alt="Block spread starting position" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/Basic_Control_Course/Stacked_Arhat_1.png" alt="Block spread starting position" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                             <p>After executing the code, the robotic arm will stack the building blocks, and the final effect is as shown in the figure below:</p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/03_08_02_BlockStack.png" alt="Block stacked result" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/Basic_Control_Course/Stacked_Arhat_2.png" alt="Block stacked result" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                             <h3>2. Code content</h3>
                             <p>Code path: <code>/home/jetson/Dofbot/3.ctrl_Arm/11.heap_up.ipynb</code></p>
                             <pre><code>#!/usr/bin/env python3
@@ -759,7 +762,7 @@ image = cv2.VideoCapture(0, cv2.CAP_V4L2)       #open camera
 ret, frame = image.read()
 image_widget.value = bgr8_to_jpeg(frame)</code></pre>
                             <p>After the code block is run, the picture captured by the USB camera can be displayed.</p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/03_09_01_camera.png" alt="camera showing a keyboard with a student's hand" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/03_09_01_camera.png" alt="camera showing a keyboard with a student's hand" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                         `
                     }
                 ],
@@ -768,13 +771,14 @@ image_widget.value = bgr8_to_jpeg(frame)</code></pre>
             {
                 id: 'opencv-course',
                 label: 'OpenCV course',
+                                content: `<h2>OpenCV course</h2><p>Select a topic from the sidebar to get started.</p>`,
                 children: [
                     {
                         id: 'ocv-intro',
                         label: '1. Introduction to Open Source CV',
                         content: `
                             <h2>Introduction to Open Source CV</h2>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/04_01_01_opencvlogo.png" alt="OpenCV logo" style="max-width:200px;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/04_01_01_opencvlogo.png" alt="OpenCV logo" style="max-width:200px;border-radius:.5rem;margin:.75rem 0;">
                             <p>What is OpenCV? Its full name is Open source Computer Vision Library, open source computer vision library. As shown in the picture above, what we see is the OpenCV logo. We can see that it consists of three small rings in the three distinct primary colors of R, G, and B. In other words, it is a set of open source API function libraries about computer vision. This also means:</p>
                             <ol>
                                 <li>Whether it is scientific research or commercial application, it can be used for development.</li>
@@ -825,7 +829,7 @@ image_widget = widgets.Image(format='jpg', width=800, height=800)
 display(image_widget)
 image_widget.value = bgr8_to_jpeg(img)</code></pre>
                             <p>After running the code block, you can see the following interface, and the image has been read out.</p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/04_02_01_multiplebots.png" alt="multiple bots image display" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/OpenCV/Image_Reading_1.png" alt="multiple bots image display" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                         `
                     },
                     {
@@ -850,7 +854,7 @@ img0 = cv2.imread('yahboom.jpg', 0)
 img_bgr2rgb0 = cv2.cvtColor(img0, cv2.COLOR_BGR2RGB)
 plt.imshow(img_bgr2rgb0)
 plt.show()</code></pre>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/04_03_01_grayscale.png" alt="grayscale method 1" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/OpenCV/GrayScale_Processing.png" alt="grayscale method 1" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                             <pre><code>#Method 2 cvtColor
 import cv2
 import matplotlib.pyplot as plt
@@ -859,7 +863,7 @@ dst = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 img_bgr2rgb0 = cv2.cvtColor(dst, cv2.COLOR_BGR2RGB)
 plt.imshow(img_bgr2rgb0)
 plt.show()</code></pre>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/04_03_02_grayscale.png" alt="grayscale method 2" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/OpenCV/GrayScale_Processing_2.png" alt="grayscale method 2" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                             <pre><code>#Method 3 Average method
 import cv2
 import numpy as np
@@ -877,7 +881,7 @@ for i in range(0, height):
 img_bgr2rgb0 = cv2.cvtColor(dst, cv2.COLOR_BGR2RGB)
 plt.imshow(img_bgr2rgb0)
 plt.show()</code></pre>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/04_03_03_grayscale.png" alt="grayscale method 3" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/OpenCV/GrayScale_Processing_3.png" alt="grayscale method 3" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                             <pre><code>#Method 4 Weighted average method
 # gray = r*0.299+g*0.587+b*0.114
 import cv2
@@ -895,7 +899,7 @@ for i in range(0, height):
 img_bgr2rgb0 = cv2.cvtColor(dst, cv2.COLOR_BGR2RGB)
 plt.imshow(img_bgr2rgb0)
 plt.show()</code></pre>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/04_03_04_grayscale.png" alt="grayscale method 4" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/OpenCV/GrayScale_Processing_4.png" alt="grayscale method 4" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                         `
                     },
                     {
@@ -905,16 +909,16 @@ plt.show()</code></pre>
                             <h2>Binary image</h2>
                             <p>The core idea of binarization is to set a threshold, and the value greater than the threshold is 0 (black) or 255 (white), making the image called a black and white image. The threshold can be fixed or adaptive.</p>
                             <p>Global threshold is provided in Python-OpenCV: <code>cv2.threshold(src, threshold, maxValue, method)</code></p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/04_04_01_graph.png" alt="threshold graph" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/04_04_02_graph.png" alt="THRESH_BINARY graph" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/OpenCV/Binary_Image_1.png" alt="threshold graph" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/OpenCV/Binary_Image_2.png" alt="THRESH_BINARY graph" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                             <p><code>cv2.THRESH_BINARY</code>: The gray value of pixels greater than the threshold is set to maxValue, and the gray value of pixels whose gray value is less than the threshold is set to 0.</p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/04_04_03_graph.png" alt="THRESH_BINARY_INV graph" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/OpenCV/Binary_Image_3.png" alt="THRESH_BINARY_INV graph" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                             <p><code>cv2.THRESH_BINARY_INV</code>: The gray value of pixels greater than the threshold is set to 0, while the gray value of pixels less than the threshold is set to maxValue.</p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/04_04_04_graph.png" alt="THRESH_TRUNC graph" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/OpenCV/Binary_Image_4.png" alt="THRESH_TRUNC graph" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                             <p><code>cv2.THRESH_TRUNC</code>: The gray value of the pixel is less than the threshold and does not change. The pixel with a gray value greater than the threshold is set to the threshold.</p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/04_04_05_graph.png" alt="THRESH_TOZERO graph" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/OpenCV/Binary_Image_5.png" alt="THRESH_TOZERO graph" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                             <p><code>cv2.THRESH_TOZERO</code>: Pixels whose grayscale values are smaller than the threshold do not undergo any change, while pixels whose grayscale values are larger than the threshold are all changed to 0.</p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/04_04_06_graph.png" alt="THRESH_TOZERO_INV graph" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/OpenCV/Binary_Image_6.png" alt="THRESH_TOZERO_INV graph" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                             <p><code>cv2.THRESH_TOZERO_INV</code>: If the gray value of the pixel is greater than the threshold, no change will be made. If the gray value of the pixel is less than the threshold, all the gray values will be changed to 0.</p>
                             <p>Code path: <code>/home/jetson/Dofbot/4.opencv_EN/3.IP_Draw_text_line_segments/02Image_Binarization.ipynb</code></p>
                             <pre><code>import cv2
@@ -935,7 +939,7 @@ for i in range(6):
     plt.title(titles[i])
     plt.xticks([]), plt.yticks([])
 plt.show()</code></pre>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/04_04_07_sixshadepng.png" alt="six threshold results" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/OpenCV/Binary_Image_7.png" alt="six threshold results" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                         `
                     },
                     {
@@ -971,7 +975,7 @@ plt.show()
 img_bgr2rgb1 = cv2.cvtColor(dst, cv2.COLOR_BGR2RGB)
 plt.imshow(img_bgr2rgb1)
 plt.show()</code></pre>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/04_05_01_twoimage.png" alt="Canny edge detection comparison" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/OpenCV/Edge_Detection_1.png" alt="Canny edge detection comparison" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                             <p>Code path: <code>/home/dofbot/Dofbot/4.opencv/3.draw_picture/03_Edge_detection_2.ipynb</code></p>
                             <pre><code>#Method 2
 import cv2
@@ -992,7 +996,7 @@ for i in range(0, height-2):
             dst[i,j] = 255
         else:
             dst[i,j] = 0</code></pre>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/04_05_02_twoimage.png" alt="Sobel edge detection result" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/OpenCV/Edge_Detection_2.png" alt="Sobel edge detection result" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                         `
                     }
                 ],
@@ -1001,6 +1005,7 @@ for i in range(0, height-2):
             {
                 id: 'app',
                 label: 'App',
+                                content: `<h2>App</h2><p>Select a topic from the sidebar to get started.</p>`,
                 children: [
                     {
                         id: 'app-on',
@@ -1027,7 +1032,7 @@ for i in range(0, height-2):
                             <h2>APP control</h2>
                             <h3>Remote Control</h3>
                             <p>Click the <strong>[Remote Control]</strong> icon, the following interface will appear on APP.</p>
-                            <img src="https://pritomp25.github.io/Robotics-Repository-URP/assets/images/05_01_01_remotecontrolpng.png" alt="Remote control interface" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
+                            <img src="images/Dofbot/App/Remote_Control_Interface_1.png" alt="Remote control interface" style="max-width:100%;border-radius:.5rem;margin:.75rem 0;">
                             <p>The camera screen is displayed on the left side of the APP. The numbers 1 to 6 on the schematic diagram of the DOFBOT represent the six servos. When we select the servo with the current ID number, the corresponding number will become red. Then, we can adjust the angle of the servo by dragging the slider or pressing left and right buttons.</p>
                             <ul>
                                 <li><strong>[Angle]</strong>: After clicking this button, the APP will read the current servo angle, and update angle value to the upper slider.</li>
@@ -1107,7 +1112,7 @@ for i in range(0, height-2):
         id: 'rosmaster',
         name: 'ROSMASTER X3',
         description: 'The Rosmaster X3 is an advanced mobile robot with ROS (Robot Operating System). This repository contains setup instructions, control code, and sensor integration examples for using the Rosmaster X3 with various programming environments. Students can learn SLAM (Simultaneous Localization and Mapping), exploring autonomous navigation, and working with sensors like LIDAR and cameras.',
-        image: 'rosmaster.jpg',
+        image: 'images/index/rosmaster.jpg',
         difficulty: 'Intro to Robot Programming',
         tags: ['ROS2 Foxy', 'NVIDIA Jetson Nano', 'LIDAR', "RGB-D Camera"],
         sections: [
@@ -1119,6 +1124,7 @@ for i in range(0, height-2):
             {
                 id: 'getting-started',
                 label: 'Getting Started',
+                                content: `<h2>Getting Started</h2><p>Select a topic from the sidebar to get started.</p>`,
                 children: [
                     { id: 'rm-gs-power',    label: 'Powering On',         content: `<div class="coming-soon-banner">🚧 Coming Soon</div>` },
                     { id: 'rm-gs-wifi',     label: 'WiFi & SSH Setup',    content: `<div class="coming-soon-banner">🚧 Coming Soon</div>` },
@@ -1130,6 +1136,7 @@ for i in range(0, height-2):
             {
                 id: 'motor-control',
                 label: 'Motor Control',
+                                content: `<h2>Motor Control</h2><p>Select a topic from the sidebar to get started.</p>`,
                 children: [
                     { id: 'rm-mc-basics',   label: 'Basic Movement',      content: `<div class="coming-soon-banner">🚧 Coming Soon</div>` },
                     { id: 'rm-mc-speed',    label: 'Speed Control',       content: `<div class="coming-soon-banner">🚧 Coming Soon</div>` },
@@ -1140,6 +1147,7 @@ for i in range(0, height-2):
             {
                 id: 'lidar',
                 label: 'LIDAR Setup',
+                                content: `<h2>LIDAR Setup</h2><p>Select a topic from the sidebar to get started.</p>`,
                 children: [
                     { id: 'rm-lidar-install', label: 'Installation',      content: `<div class="coming-soon-banner">🚧 Coming Soon</div>` },
                     { id: 'rm-lidar-launch',  label: 'Launching LIDAR',   content: `<div class="coming-soon-banner">🚧 Coming Soon</div>` },
@@ -1150,6 +1158,7 @@ for i in range(0, height-2):
             {
                 id: 'navigation',
                 label: 'Navigation & SLAM',
+                                content: `<h2>Navigation & SLAM</h2><p>Select a topic from the sidebar to get started.</p>`,
                 children: [
                     { id: 'rm-nav-mapping',  label: 'Building a Map',     content: `<div class="coming-soon-banner">🚧 Coming Soon</div>` },
                     { id: 'rm-nav-localize', label: 'Localization',       content: `<div class="coming-soon-banner">🚧 Coming Soon</div>` },
@@ -1200,7 +1209,7 @@ for i in range(0, height-2):
         id: 'raspbot',
         name: 'Raspbot V2',
         description: 'The Raspbot V2 is a beginner-friendly robot car that runs on the Raspberry Pi. This repository includes code and documentation for setting up the Raspbot, controlling its movement, and incorporating basic computer vision features. This repo teaches students motor control, obstacle avoidance, and basic computer vision using Python.',
-        image: 'raspbot.jpg',
+        image: 'images/index/raspbot.jpg',
         difficulty: 'Robotics 2',
         tags: ['Raspberry Pi 5', 'ROS2 Humble', 'Ultrasonic', 'Articulated Camera'],
         sections: [
@@ -1212,66 +1221,410 @@ for i in range(0, height-2):
             {
                 id: 'overview',
                 label: 'Overview',
-                content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`,
-                children: [
-                    {
-                        id: 'overview-software',
-                        label: 'Software',
-                        content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`
-                    },
-                    {
-                        id: 'overview-hardware',
-                        label: 'Hardware',
-                        content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`
-                    },
-                    {
-                        id: 'overview-key-features',
-                        label: 'Key Features',
-                        content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`
-                    }
-                ]
-            },
+                content: `
+                <h1> Overview </h1>
+                <div class="doc-note warning">
+                    <strong>Please read carefully before operating the robot.</strong>
+                </div>
+                <h2> Introduction </h2>
+                <p>Raspbot V2 is a good introduction into robotics. It has simple and easy to learn features and commands but that also allows for a lot of creativity on your part to make it do what you want. Remember, this is a beginner course so everthing will be introduced to you under the presumption that you have little to no experience, and will start easy to build your knowledge. </p>
+                <h2> Important Notes before Operation </h2>
+                <ul>
+                <li> The robot will drive into walls/people/other objects if you let it. </li>
+                <li> Be careful where you set the robot to run as to not let it drive under people, out of doors, etc. </li>
+                <li> Be careful with the wires, circut boards, camera, and ports when handling the robots. </li>
+                <li> When you start testing your own code, do so with your robot elevated <strong>(wheels not touching the ground)</strong>, so the robot doesn't drive around randomly. </li>
+                <li> Make sure the camera is plugged in <strong>before</strong> turning on the robot so it'll work properly. Also make sure to unplug the camera <strong>before</strong> you put it away for storage.</li>
+                <li> Make sure camera servos are aligned on startup (Call TA or Professor if you are unsure). </li>
+                </ul>
+
+                <h2> Key Features </h2>
+                <p> As mentioned before, the Raspbot V2 is a beginner friendly robot, but it does still boast an impressive amount of features, such as: </p>
+                <ul>
+                <li> Omnidirectional drive via the wheel treads and independent motor functions. </li>
+                <li> A buzzer that can be called and controlled in scripts. </li>
+                <li> Camera reading capabilities, including light and color detection, video and photos, and script implementation. </li>
+                <li> Infared detection/vision with capabilities to use a remote control.  </li>
+                <li> Ultrasonic detection to measure the distance from an object.</li>
+                </ul>
+
+                <h2> Physical Features </h2>
+                <p> Here are some important physical and hardware on the Raspbot V2 and where they are located:
+                <div> Camera (with camera cap) </div>
+                <ul>
+                <li> Located on the front head of the robot. Camera cap should be covering the camera, make sure to not lose it and inform a TA or professor if your camera cap is missing. </li>
+                <li> Has two servos to rotate horizontally and vertically. </li>
+                <li> Camera USB wire runs from the camera towards the back USB ports of the robot (make sure the camera is plugged in). </li>
+                <li> Make sure the camera USB is plugged in <strong>before</strong> turning the robot on and unplugged <strong>after</strong> the robot is turned off to store</li>
+                </ul>
+                <div> Robot O-Led </div>
+                <ul>
+                <li> Located on the right side (facing) of the robot. </li>
+                <li> Displays robot/raspberry pi info, such as Robot Address, CPU Usage, Memory, etc. </li>
+                </ul>
+                <div> Wheels and Treads </div>
+                <ul>
+                <li> Located on the four corners of the robot. </li>
+                <li> Can be used to move forwards, backwards, left and right, as well as turning in place. </li>
+                <li> Notice both the wheels and treads and how they contribute to the movement of the robot </li>
+                </ul>
+                <div> Power Switch </div>
+                <ul>
+                <li> Located on the back, under the USB ports </li>
+                <li> Turns on the robot, you will know it is active by the robot beeping 3 times. <strong>(May take some time to boot up)</strong> </li>
+                </ul>
+                <div> Circut Boards, Wires, Ports </div>
+                <ul>
+                <li> Circut Boards located at the center of the bot, USB ports located at the back above the power switch. </li>
+                <li> <strong>Be Careful</strong> to not mess with the circut boards too much, if at all. </li>
+                <li> These are delicate systems crucial to the function of the robot. </li>
+                <li> Touching the wires located by the camera is known to crash the camera on occasion. Please note this and be careful of this when using the camera. </li>
+                <li> The Raspbot V2 runs on a Raspberry Pi 5. </li>
+                </ul>
+
+                <h2> Software </h2>
+                <p> Here will list most of the software you will use while using this robot: </p>
+                <div> Python (via JupyterLab) </div>
+                <ul>
+                <li> You will be using JupyterLab to write and run Python script for your robot. </li>
+                <li> This will allow you to do things from simply moving your bot to making it able to navigate full obstacle courses and more. </li>
+                <li> Python is one of the most beginner friendly coding languages, so don't be intimidated with coding, it starts very easy. </li>
+                <li> You will be given starter code snippits and segments if you look throughout the <strong>Basic Examples</strong> and <strong>Advance Samples</strong> tabs so use those to your advantage. </li>
+                <li> There is also pre-existing code already on your robot you can access in JupyterLab </li>
+                </ul>
+                <div> ROS2 </div>
+                <ul>
+                <li> Robot Operating System 2. </li>
+                <li> Used for real time controls and operations. </li>
+                </ul>
+                <div> Docker </div>
+                <ul>
+                <li> Used as a deployment environment. </li>
+                <li> Secure, reproducable, and self-contained. </li>
+                <li> Entered through terminals and able to run multiple seperate operations </li>
+                </ul>
+                <h2> Last Notes </h2>
+                <ul>
+                <li> Make sure to re-read the <strong> Important Notes before Operation </strong> section again because they are good things to remember. </li>
+                <li> The <strong> Getting Started </strong> tab will take you through setting up the Raspbot, Dockers, JupyterLab, and other operations you'll need to know </li>
+                <li> Read your lab/assignment instructions twice before starting. It's better to go slow than do things over again because you messed up. </li>
+                <li> If you ever get overwelmed by anything, check the other tabs in this webpage. 
+                    <ul>
+                    <li> <strong> Basic Examples </strong> will help with basic robot operations, giving you a good starting point or base for your assignment. </li>
+                    <li> <strong> Advanced Examples </strong> will help you understand the advanced robot operations, giving you more insight into higher level topics and functions. </li>
+                    </ul> 
+                </li>
+                <li> <strong> If you encounter problems </strong>, check the <strong> Common Issues </strong> tab, it may hold solutions. 
+                </li>
+                <li> Go to your TA's or Professor with any questions or clarifications. </li>
+                <ul>
+                `
+            },,
             {
+                            
                 id: 'getting-started',
                 label: 'Getting Started',
-                content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`,
-                children: [
-                    {
-                        id: 'gs-turning-on',
-                        label: 'Turning On / Setting Up',
-                        content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`
-                    },
-                    {
-                        id: 'gs-connect-app',
-                        label: 'Connect via App',
-                        content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`
-                    },
-                    {
-                        id: 'gs-connect-jupyter',
-                        label: 'Connect via Jupyter Lab',
-                        content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`
-                    },
-                    {
-                        id: 'gs-connect-vnc',
-                        label: 'Connect via VNC Viewer',
-                        content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`
-                    }
-                ]
+                content: `
+                <h1> Getting Started </h1>
+                
+                <h2> Setting up the Raspbot V2 </h2>
+                <p> This will guide you through how to boot and set up the Raspbot. It is a simple process but it is important to follow all of the steps carefully. </p>
+                <ul>
+                <li> Connect the camera USB wire to the USB port located at the back of the robot. </li>
+                <li> Flip the switch located under the USB ports. </li>
+                <li> Wait for the robot to beep 3 times. </li>
+                </ul>
+                <p> Things to watch out for </p>
+                <ul>
+                <li> Take the camera cap is taken off of the front of the camera. Also make sure not to lose it. </li>
+                <li> Make sure the camera rotors properly turned the camera to face front center and level of the bot. If you hear the motors running too long, turn the robot off and on again. </li>
+                <li> It may take a while for the robot to boot; however, if the robot hasn't beeped in 2-3 minutes, turn it off and back on. </li>
+                </ul>
+
+                <h2> Connecting a Device to the Robot's Network </h2>
+                <p> Upon starting the robot, a network should appear under wifi like, <i> Raspbot# </i> where <i>#</i> is the number on the sticker of the box of the robot. The password for this network is <i> 12345678 </i> </p>
+
+                <h2> Connecting via app </h2>
+                <p> To test with the app, Download the MakerControl app by Yahboom. You can find a QR code on the following site under the 'Downloads' section. </p>
+                <p> <i> https://www.yahboom.net/study/RASPBOT-V2 </i> </p> 
+                <ul>
+                <li> Make sure your device is on the same network as the robot. </li>
+                <li> To connect via the app, open the app, and the robot should appear automatically to prompt you to connect. </li>
+                <ul> <li> If automatic connect does not work, use the IP address displayed on the OLED screen on top of the robot, select “manual connect”, and type in the robot's IP address. </li> </ul>
+                </ul> 
+                <p> You should be connected to the app now. </p>
+
+
+                <h2> Connecting via JupyterLab </h2>
+                <p> Used for making, editing, and running python scripts for the robot. Jupyter Labs will be hosted on the robot and can be accessed using any browser on the same network. </p>
+                <h3> Access from Another Device </h2>
+                <p> In a browser on the same network, type into the search bar: </p>
+                <code>http://<i>your_robot_ip</i>:8888/lab</code>
+                <p> <i> Password: </i> <strong> Yahboom </strong> </p>
+                <h3> Access on the Raspbot </h3>
+                <p> Open a browser (second icon from the top left) and type into the search bar, </p>
+                <code> localhost:8888/lab </code>
+                <ul> <li> The password is: <i> yahboom </i> </li> </ul>
+
+                <h3> Using JupyterLab </h3>
+                <p> You can access and run the pre-existing code on your robot or make your own in JupyterLab. </p>
+                <p> To run programs, you can either hit the <i> "Restart and run all cells" </i> button that looks like two arrows or the <i> "Run next cell" </i> button that looks like one arrow. </p>
+                <p> JupyterLab supports many languages but the Raspbot V2 uses Python. </p>
+                
+                
+
+                <h2> Connecting via VNC viewer </h2>
+                <p> Download VNC Viewer from: <i> https://www.realvnc.com/en/connect/downloads/viewer/ </i>. VNC Veiwer will prompt you to make an account and verify the email address.
+                <p> Once VNC Viewer is installed, make sure your device is connected to the same network as the robot. Then, 
+                <ul>
+                <li> Open VNC Viewer. </li>
+                <li> In the bar at the top, enter the IP address of the robot (located on the OLED screen). Click on the VNC server icon to connect.</li>
+                    <ul>
+                    <li> There may be a warning about the connection being unencrypted. </li>
+                    </ul>
+                <li>When prompted, enter <i> pi </i> as the username and <i> yahboom </i> as the password. </li>
+                    <ul>
+                    <li> Be sure to click 'Remember password' when connecting or it may fail. </li>
+                    </ul>
+                </ul>
+                </p>
+
+                <h3> Using VNC Viewer </h3>
+                <p> VNC Viewer is how you'll be viewing robot. You can access JupyterLab, Terminals, the Camera app, and much more through VNC Viewer. </p>
+                <p> In the VNC Viewer window, the apps you'll use the most are at the top hotbar, with the other apps in the dropdown menu at the left side of that hotbar. 
+                <ul> <li> It's recommended to look through these briefly just to know where everything is. </li>
+                <li> Note that it may take a while to open applications, make sure to not open the application multiple times while its still opening. </ul> </p>
+
+
+
+                <h2> Entering the Docker Container </h2>
+                <p> You'll need to be connected to the robot through the VNC Viewer. </p>
+                <p> Run the following in one terminal to enter into the docker container.
+                <br> <code> source docker_ros2.sh </code>
+                <ul> <li> Successful completion should show the terminal hostname as: "<i> root@yahboom </i>" </li> </ul>
+
+                <p> In a new terminal, run,
+                <br> <code> docker ps -a </code>
+                <ul> <li> You are looking for the most recent container ID. This should be a length 12 alpha-numeric ID. </li> </ul>
+                <p> Then run in the same terminal,
+                <br> <code> docker exec -it <i> "container_ID" </i> /bin/bash </code>
+                <p> You now have two docker terminals to use, run, and retrieve programs from, allowing different applications to run independently. </p>
+                <p> To exit your dockers, go back to your original terminal and run,
+                <br> <code> exit </code>
+                
+                <h3> Quick Guide </h3>
+                <strong>Terminal 1</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>Terminal 2</strong>
+                <br> <strong> 1. </strong> <code> source docker_ros2.sh </code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <strong> 2. </strong> <code> docker ps -a </code>
+                <br> <strong> 4. </strong> <code> exit </code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <strong> 3. </strong> <code> docker exec -it "container_ID" /bin/bash </code>
+                `
             },
             {
                 id: 'common-issues',
-                label: 'Common Issues (Debugging)',
-                content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`
+                label: 'Common Issues',
+                content: `
+                <h1> Common Issues </h1>
+                <p> Here you will find common problems or issues known when using Raspbot V2. </p>
+                <ul> 
+                <li> If you have an issue that is documented with <strong> no fix stated </strong> or <strong> fix that doesn't work </strong> with your problem, report your problem to a TA or Professor. </li>
+                <li> If you encounter an undocumented issue, follow the procedure of the <strong> Undocumented Issues </strong> section second to bottom of the page. </li>
+                <li> See <strong> How to Properly Report an Issue </strong> section at the bottom of the page when reporting an issue. </li>
+                </ul>
+
+                <h2> Camera Issues </h2>
+
+                <div> Issue: Touching camera wire caused camera crash <div>
+                <p> Fix: Turn off robot, unplug camera, plug camera back in, turn on robot. </p>
+
+                <div> Issue: Camera won't work/only showing black </div>
+                <p> Fix: Make sure you plugged in camera <strong> before </strong> startup (Turn bot off, plug camera in, turn bot back on). <br> Fix: Make sure camera cap is removed. </p> 
+
+
+                <h2> Ros2 Issues </h2>
+
+                <div> Issue: ValueError: bad marshal data </div>
+                <p> Fix: Let the Professor know.  </p>
+
+
+                <h2> Undocumented Issues </h2>
+                
+                <div> Issue: Unknown/Undocumented </div>
+                <p> Fix: Try turning robot off and back on again. If issue remains/repeats, let a TA or Professor know of the issue. </p>
+                <ul> <li> If the issue is resolved, let the Proffesor or TA know at the end of class what issue you encountered and that it fixed itself on restart </li> </ul>
+
+                <h2> How to Properly Report an Issue </h2>
+                <p> It is better to <strong> report an issue earlier </strong> then spending a lot of class time trying to debug it on your own, if the known fixes don't work, report the issue to a TA or Professor.</p>
+                <p> Tell your TA or Professor what <strong> issue you are encountering </strong>, what (if any) <strong> fixes you've attempted </strong>, and what <strong> caused this problem </strong> (if you know). </p>
+                <ul>
+                <li> <i>Example 1:</i> I have <strong> x issue</strong> when I do <strong> y </strong>. I've tried <strong> fix z </strong> I found on the Common Issues page but it didn't work. </li>
+                <li> <i>Example 2:</i> I have <strong> x issue </strong>. I don't know what caused it and it's not on the Common Issues page. </li>
+                </ul>
+                `
             },
             {
                 id: 'basic-examples',
                 label: 'Basic Examples (Python)',
-                content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`,
+                content: `<h2>Basic Examples (Python)</h2><p>Select a topic from the sidebar to get started.</p>`,
                 children: [
-                    {
-                        id: 'be-motor',
-                        label: 'Read/Write Motor',
-                        content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`
+                        {
+                                id: 'motor-control',
+                                label: 'Motor Control',
+                                content: `<h1>Motor Control</h1>
+                                    <h3>1. Ensure that Raspbot_Lib library functions is properly installed.</h3>
+                                    <p>Raspbot Driver function are required. <br>
+                                    If you do not have it properly install, click the link below. <br>
+                                    <a link href="https://www.yahboom.net/study/Raspbot" target = "_blank" style = "color: blue";> Library Installation Link</a>
+                                    </p>
+
+                                    <h3>2. Core functions </h3>
+                                    <p>This repository is made with Raspbot v2 in mind, so you generally be using McLumk_Wheel_Sports library functions for movement as they are prebuilt functions made with Mecanum wheels in mind.<br>
+                                    Mecanum wheel have a roller containder a smaller roller placed at 45% degreess disbursting force as depicted by the image below. <br>
+                                    <img src="Images/Raspbot/Mecanum_force.png" alt = "Mecanum_force" width ="500"><br>
+                                    But if you want to apply this to Raspbot in general or use costum angles for movement, you will be using the core functions.<br>
+                                    The following image display the where each motor is and their corresponding ID.<br>
+                                    <img src="Images/Raspbot/Motor_Display.png" alt = "Mecanum_force" width ="500"><br>
+                                    If your confused at what your looking at, use these relationships<br>
+                                    Front left = M1<br>
+                                    Front right = M2<br>
+                                    Back left = M3<br>
+                                    Back right = M4</p>
+                                    <p>Methods:</p>
+                                    <pre>Ctrl_Muto(int motor_id, int motor_speed)</pre>
+
+                                    <p>The method preforms a action withh the corresponding motor ID.<br>
+                                    The motor_speed is ranges form -255 to 255.<br>
+                                    With positive speed to rotate forward, negative speed to rotate backwards, and 0 to stop.</p>
+
+                                    <pre>Ctrl_Car(int motor_id, motor_dir, int motor_speed):</pre>
+                                    <p>The function accomplish the same task as Ctrl_Muto so use methods based on preference.<br>
+                                    motor_dir can be 0(forward rotation) or 1(reverse rotation).<br>
+                                    The motor_speed is ranges form 0 to 255.<br> 
+
+                                    You can use both function interchangably like this. <br>
+                                    Ctrl_Muto(M2, -100) is the equalivalent to Ctrl_Car(M2, 1, 100).<br>
+                                    <br>
+                                    while Ctrl_Muto and Ctrl_Car only controls one motor, calling the method 4 times allow you to move the raspbot in cretain direction.<br>
+                                    Refer to this table to make movement using Ctrl_Muto. Note: this table uses Mecanum wheels<br>
+                                    The speed must range form -255 to 255</p>
+
+                                    <table class = "motor_table">
+                                        <thead>
+                                            <th scope = "col">Motion</th>
+                                            <th scope = "col">M1</th>
+                                            <th scope = "col">M2</th>
+                                            <th scope = "col">M3</th>
+                                            <th scope = "col">M4</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Forward</td>
+                                                <td>+</td>
+                                                <td>+</td>
+                                                <td>+</td>
+                                                <td>+</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Backward</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Left Translation</td>
+                                                <td>-</td>
+                                                <td>+</td>
+                                                <td>+</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Right Translation</td>
+                                                <td>+</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>+</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Left Front</td>
+                                                <td>0</td>
+                                                <td>+</td>
+                                                <td>+</td>
+                                                <td>0</td>
+                                            </tr>
+                                            <tr>
+                                                <td>left Rear</td>
+                                                <td>+</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>+</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Right Front</td>
+                                                <td>+</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>+</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Right Rear</td>
+                                                <td>0</td>
+                                                <td>+</td>
+                                                <td>+</td>
+                                                <td>0</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Counterclockwise Rotation<br>(Left Rotation)</td>
+                                                <td>-</td>
+                                                <td>+</td>
+                                                <td>-</td>
+                                                <td>+</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Clockwise Rotation<br>(Right rotation)</td>
+                                                <td>+</td>
+                                                <td>-</td>
+                                                <td>+</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Stop</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <h3>3. Sample Code with Raspbot Standard library</h3>
+                                    <pre></pre>
+
+                                    <h3>4. McLumk_Wheel_Sports library functions</h3>
+                                    <p>You do not have to install a new library because it comes with Raspbot_lib.<br>
+                                    Instead of manually coding motor movement using the functions listed under Core functions.<br>
+                                    McLumk_Wheel_Sports library already cotains code for general movement with Mecanum wheels.<br>
+                                    The following list are library function that are controlled by the parameter speed. <br>
+                                    The name of the method implies the direction the bot would move in.<br>
+                                    The speed is need to be form 0 to 255. With 0 to stop and bigger number resulting in higher speed.</p>
+
+                                    <pre>move_forward(int speed)
+                                    move_backward(int speed)
+                                    move_right(int speed)
+                                    move_left(int speed)
+                                    move_diagonal_left_front(int speed)
+                                    move_diagonal_right_front(int speed)
+                                    move_diagonal_left_back(int speed)
+                                    move_diagonal_right_back(int speed)</pre>
+
+                                    <p>These next 2 function are for rotation.</p>
+                                    <pre>rotate_right(speed)
+                                    rotate_left(speed)</pre>
+
+                                    <h3>Sample code with McLumk_Wheel_Sports library functions</h3>
+                                    <pre></pre>
+                                `
                     },
                     {
                         id: 'be-basic-move',
@@ -1304,11 +1657,127 @@ for i in range(0, height-2):
                         content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`
                     },
                     {
-                        id: 'be-camera',
-                        label: 'Connect to Camera',
-                        content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`
-                    }
-                ]
+                                    
+                        id: 'Camera',
+                        label: 'Camera',
+                        content: `<h1>Camera</h1>
+                        <h3>1. OPenCV</h3>
+                        <p>OpenCV stands for Open source Computer Vision Library.<br>
+                        OpenCV library contains methods for computational vision using the primary colors R,G,B.<br>
+                        While OpenCV may contain functions that displays images as well as images processing with target detection, we will primarily focus on method that help boot up a camera for this page.<br>
+                        As such, if you want to dive deeper into OpenCV, you may want to check out their offical page: 
+                        <a link href="https://opencv.org/" target = "_blank" style = "color: blue"; >OpenCV</a>.<br>
+                        For Installation of OpenCV Library visit: 
+                        <a link href="https://docs.opencv.org/4.x/d0/d3d/tutorial_general_install.html" target = "_blank" style = "color: blue"; >OpenCV Installation</a>.<br>
+                        For specifically all method related to this camera page visit: 
+                        <a link href="https://docs.opencv.org/3.4/d8/dfe/classcv_1_1VideoCapture.html" target = "_blank" style = "color: blue"; >OpenCV Methods</a>.<br>
+                        </p>
+
+                        <h3>2.Core functions </h3>
+                        <pre>cv2.VideoCapture(int argument)</pre>
+
+                        <p>To connect to default camera or Raspberry Pi video, use set argument = 0.</p>
+                        
+                        <pre>camera.set(int setting, int numeric_value)</pre>
+
+                        <p>These are common configuration you can set if your camera seems off.<br>
+                        the number on the left represent what your modifying and what you put in place of settings.<br>
+                        We've listed the common configuretion. Not recommend to modify setting outside of these value.<br>
+                        Note: Not all method are supported by the camera. So you might not be able to modify the hue, saturation, and etc.</p>
+
+                        <table class = "camera_table">
+                            <thead>
+                                <tr>
+                                    <th scope = "col">Setting value</th>
+                                    <th scope = "col">Setting name</th>
+                                    <th scope = "col">Functionality</th>
+                                    <th scope = "col">Common Values</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>3</td>
+                                    <td>CV_CAP_PROP_FRAME_WIDTH</td>
+                                    <td>Width in frames</td>
+                                    <td>1920</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>CV_CAP_PROP_FRAME_HEIGHT</td>
+                                    <td>Height in frames</td>
+                                    <td>1080</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>CV_CAP_PROP_FPS</td>
+                                    <td>Frame Rate</td>
+                                    <td>30</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>CV_CAP_PROP_BRIGHTNESS</td>
+                                    <td>Brightness of image</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td>CV_CAP_PROP_CONTRAST</td>
+                                    <td>Contrast of image</td>
+                                    <td>40</td>
+                                </tr>
+                                <tr>
+                                    <td>12</td>
+                                    <td>CV_CAP_PROP_SATURATION</td>
+                                    <td>Saturation of image</td>
+                                    <td>50</td>
+                                </tr>
+                                <tr>
+                                    <td>13</td>
+                                    <td>CV_CAP_PROP_HUE</td>
+                                    <td>Hue of images</td>
+                                    <td>50</td>
+                                </tr>
+                                <tr>
+                                    <td>15</td>
+                                    <td>CV_CAP_PROP_EXPOSURE</td>
+                                    <td>Exposure</td>
+                                    <td>50</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <p>You may have notice that we skipped some setting value.<br>
+                        That because there are other setting that exist on OpenCV but doesn't modify them unless you need to.<br>
+                        To find all camera setting you can adjust visit: 
+                        <a link href="https://docs.opencv.org/3.4/d4/d15/group__videoio__flags__base.html#ggaeb8dd9c89c10a5c63c139bf7c4f5704da7c2fa550ba270713fca1405397b90ae0" target = "_blank" style = "color: blue"; >OpenCV</a>
+                        </p> 
+
+                        <pre>camera.isOpened()</pre>
+                        <p>Boolean function that returns true if success and false otherwise</p>
+
+                        <pre>ret,frame = camera.read()</pre>
+                        <p>Read the video a frame at a time and return information storted in variable ret and frame.<br>
+                        Variable rat is a boolean value that return true if it read the file to the end and false otherwise.<br>
+                        Variable frame is the image processed in a single frame represented though a 3-D matrix</p>
+
+                        <pre>cv2.waitKey()</pre>
+                        <p>Put a postive numerical value to to cause a delay.<br>
+                        cv2.waitKey(1) causes a delay of 1ms between each frame.<br>
+                        Avoid setting a large number in waitKey like 1000 or it might feel like it's stuck or lagging.<br>
+                        Setting the value to 0 would make the video pause on it's current frame.</p>
+
+                        <pre>camera.release() and destroyAllWindows() </pre>
+                        <p>camera.release() releases the video.<br>
+                        destroyAllWindows() closes all image windows.<br>
+                        When runing any code involving getting and opening camera file, always run the program until completion.<br>
+                        If you don't run the program to camera.release and destroyAllWindows, it will hold the camera file in the background.<br>
+                        This will cause future program to be denied access when searching for the camera file.</p>
+
+                        <h3>Sample code with OpenCV functions to open camera</h3>
+                        <pre></pre>`        
+                    },
+                ],
+                content: `<h2>Basic Examples (Python)</h2><p>Select a topic from the sidebar to get started.</p>`
             },
             {
                 id: 'advanced-examples',
@@ -1325,7 +1794,8 @@ for i in range(0, height-2):
                                 label: 'Ultrasonic',
                                 content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`
                             }
-                        ]
+                        ],
+                content: `<h2>Python Examples</h2><p>Select a topic from the sidebar to get started.</p>`
                     },
                     {
                         id: 'ae-ros',
@@ -1337,7 +1807,8 @@ for i in range(0, height-2):
                                 label: 'Gesture Recognition',
                                 content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`
                             }
-                        ]
+                        ],
+                content: `<h2>Ultrasonic</h2><p>Select a topic from the sidebar to get started.</p>`
                     }
                 ]
             },
@@ -1366,7 +1837,8 @@ for i in range(0, height-2):
                         label: 'Docker',
                         content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`
                     }
-                ]
+                ],
+                content: `<h2>Gesture Recognition</h2><p>Select a topic from the sidebar to get started.</p>`
             },
             {
                 id: 'professor-notes',
@@ -1389,7 +1861,7 @@ for i in range(0, height-2):
         id: 'dogzilla',
         name: 'Dogzilla',
         description: 'Quadruped robot dog with advanced locomotion and dynamic balance control.',
-        image: 'dogzilla.jpg',
+        image: 'images/index/dogzilla.jpg',
         difficulty: 'Intro to Robot Programming',
         tags: ['ROS2 Humble', 'Raspberry Pi 5', 'RGB Camera','Legged Locomotion'],
         sections: [
@@ -1401,6 +1873,7 @@ for i in range(0, height-2):
             {
                 id: 'getting-started',
                 label: 'Getting Started',
+                                content: `<h2>Getting Started</h2><p>Select a topic from the sidebar to get started.</p>`,
                 children: [
                     { id: 'dz-gs-power',   label: 'Powering On',         content: `<div class="coming-soon-banner">🚧 Coming Soon</div>` },
                     { id: 'dz-gs-app',     label: 'Connect via App',     content: `<div class="coming-soon-banner">🚧 Coming Soon</div>` },
@@ -1411,6 +1884,7 @@ for i in range(0, height-2):
             {
                 id: 'gait',
                 label: 'Gait Patterns',
+                                content: `<h2>Gait Patterns</h2><p>Select a topic from the sidebar to get started.</p>`,
                 children: [
                     { id: 'dz-gait-walk',  label: 'Walking',             content: `<div class="coming-soon-banner">🚧 Coming Soon</div>` },
                     { id: 'dz-gait-trot',  label: 'Trotting',            content: `<div class="coming-soon-banner">🚧 Coming Soon</div>` },
@@ -1449,10 +1923,8 @@ window.roboticsKits = roboticsKits;
 // Add any image filenames in this folder here.
 // They will appear in the Markdown editor image picker.
 // ================================================
-window.siteImages = [
-    { file: 'dofbot.jpg',    label: 'DOFBOT' },
-    { file: 'dofbot_1.png',  label: 'DOFBOT (alt)' },
-    { file: 'rosmaster.jpg', label: 'ROSMASTER X3' },
-    { file: 'raspbot.jpg',   label: 'Raspbot V2' },
-    { file: 'dogzilla.jpg',  label: 'Dogzilla' },
-];
+// siteImages is now loaded automatically from the server.
+// Any image added to the /images folder will instantly appear
+// in the professor admin image picker — no code changes needed.
+// Populated at runtime by app.js via GET /api/images
+window.siteImages = [];

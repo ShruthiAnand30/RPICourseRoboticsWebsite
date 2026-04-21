@@ -50,6 +50,33 @@ function saveOverrides(data) {
 }
 
 // ------------------------------------------------
+// GET /api/images
+// Scans the /images folder and returns every image
+// file found — so the admin picker is always up to
+// date without any manual registration in data.js.
+// ------------------------------------------------
+const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg']);
+const IMAGES_DIR = path.join(__dirname, 'images');
+
+app.get('/api/images', (req, res) => {
+    try {
+        if (!fs.existsSync(IMAGES_DIR)) {
+            return res.json({ success: true, images: [] });
+        }
+        const files = fs.readdirSync(IMAGES_DIR)
+            .filter(f => IMAGE_EXTENSIONS.has(path.extname(f).toLowerCase()))
+            .map(f => ({
+                file: 'images/' + f,
+                label: f.replace(/\.[^.]+$/, '').replace(/[_-]/g, ' ')
+            }));
+        res.json({ success: true, images: files });
+    } catch (err) {
+        console.error('Error scanning images folder:', err.message);
+        res.status(500).json({ success: false, images: [] });
+    }
+});
+
+// ------------------------------------------------
 // GET /api/overrides
 // Returns all saved content overrides so the page
 // can apply them on load (instead of localStorage).
