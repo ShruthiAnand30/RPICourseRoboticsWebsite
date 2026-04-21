@@ -118,8 +118,20 @@
                                 <button type="button" class="md-tool" data-action="ol">1. List</button>
                                 <span class="md-sep"></span>
                                 <button type="button" class="md-tool" data-action="link">&#128279; Link</button>
+                                <button type="button" class="md-tool" data-action="image" id="md-image-btn">&#128247; Image</button>
                                 <button type="button" class="md-tool" data-action="codeblock">{ } Block</button>
                                 <button type="button" class="md-tool" data-action="hr">&#8212;</button>
+                            </div>
+                            <!-- Image Picker Dropdown -->
+                            <div class="md-image-picker" id="md-image-picker" style="display:none">
+                                <div class="md-image-picker-header">
+                                    <span>Pick an image from the folder</span>
+                                    <button type="button" class="md-image-picker-close" id="md-image-picker-close">&#10005;</button>
+                                </div>
+                                <div class="md-image-grid" id="md-image-grid"></div>
+                                <div class="md-image-picker-footer">
+                                    <span class="md-hint">To add more images, add the filename to <code>siteImages</code> in <code>data.js</code></span>
+                                </div>
                             </div>
                             <div class="md-split-wrap">
                                 <textarea id="admin-section-content" class="admin-textarea md-textarea" rows="14"
@@ -166,12 +178,16 @@
                             <div class="admin-new-section-row">
                                 <input type="text" id="new-section-id" class="admin-input" placeholder="section-id (no spaces)" />
                                 <input type="text" id="new-section-label" class="admin-input" placeholder="Display Label" />
+                                <select id="new-section-parent" class="admin-select" style="flex:0 0 auto;width:auto;">
+                                    <option value="">&#128193; Top-level</option>
+                                </select>
                                 <select id="new-section-type" class="admin-select" style="flex:0 0 auto;width:auto;">
                                     <option value="public"> Public</option>
                                     <option value="internal"> Internal</option>
                                 </select>
                                 <button class="btn-primary" id="admin-add-section">Add</button>
                             </div>
+                            <p class="md-hint" style="margin-top:.4rem;">Choose a parent to create a subcategory, or leave as Top-level.</p>
                         </div>
                     </div>
                 </div>
@@ -207,15 +223,33 @@
     let editingSection = null;
     let originalContent = null;
 
-    function loadOverrides() {
+    // Load overrides from the server on startup
+    async function loadOverrides() {
         try {
-            const raw = localStorage.getItem('admin_overrides');
-            if (raw) savedOverrides = JSON.parse(raw);
-        } catch { savedOverrides = {}; }
+            const res = await fetch('/api/overrides');
+            const data = await res.json();
+            if (data.success) savedOverrides = data.overrides;
+        } catch (err) {
+            console.warn('Could not load overrides from server, falling back to localStorage:', err);
+            try {
+                const raw = localStorage.getItem('admin_overrides');
+                if (raw) savedOverrides = JSON.parse(raw);
+            } catch { savedOverrides = {}; }
+        }
     }
 
-    function saveOverrides() {
-        localStorage.setItem('admin_overrides', JSON.stringify(savedOverrides));
+    // Save a single section override to the server
+    async function saveOverrides(kitId, sectionId, overrideData) {
+        try {
+            await fetch('/api/overrides', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ kitId, sectionId, ...overrideData })
+            });
+        } catch (err) {
+            console.warn('Could not save to server, falling back to localStorage:', err);
+            localStorage.setItem('admin_overrides', JSON.stringify(savedOverrides));
+        }
     }
 
     function applyOverrides() {
@@ -239,7 +273,7 @@
     function setSectionOverride(kitId, sectionId, data) {
         if (!savedOverrides[kitId]) savedOverrides[kitId] = {};
         savedOverrides[kitId][sectionId] = { ...getSectionOverride(kitId, sectionId), ...data };
-        saveOverrides();
+        saveOverrides(kitId, sectionId, savedOverrides[kitId][sectionId]);
     }
 
     function populateKitSelects() {
@@ -254,15 +288,34 @@
         const kit = window.roboticsKits.find(k => k.id === kitId);
         if (!kit) return;
         const select = document.getElementById('admin-section-select');
-        select.innerHTML = kit.sections.map(s =>
-            `<option value="${s.id}">${s.label}${s.internal ? ' 🔒' : ''}</option>`
-        ).join('');
+        let opts = '';
+        kit.sections.forEach(s => {
+            opts += `<option value="${s.id}">${s.label}${s.internal ? ' 🔒' : ''}</option>`;
+            if (s.children) {
+                s.children.forEach(c => {
+                    opts += `<option value="${c.id}">  ↳ ${c.label}${c.internal ? ' 🔒' : ''}</option>`;
+                });
+            }
+        });
+        select.innerHTML = opts;
         loadSectionIntoEditor(kitId, kit.sections[0]?.id);
+    }
+
+    function findSection(kit, sectionId) {
+        if (!kit) return null;
+        for (const s of kit.sections) {
+            if (s.id === sectionId) return s;
+            if (s.children) {
+                const child = s.children.find(c => c.id === sectionId);
+                if (child) return child;
+            }
+        }
+        return null;
     }
 
     function loadSectionIntoEditor(kitId, sectionId) {
         const kit = window.roboticsKits.find(k => k.id === kitId);
-        const sec = kit?.sections.find(s => s.id === sectionId);
+        const sec = findSection(kit, sectionId);
         if (!sec) return;
         editingKit = kitId;
         editingSection = sectionId;
@@ -271,6 +324,56 @@
         document.getElementById('admin-section-content').value = htmlToMarkdown(sec.content);
         document.getElementById('admin-save-status').textContent = '';
         mdUpdatePreview();
+
+        // Image picker close button
+        var pickerClose = document.getElementById('md-image-picker-close');
+        if (pickerClose) {
+            pickerClose.addEventListener('click', function() {
+                document.getElementById('md-image-picker').style.display = 'none';
+            });
+        }
+
+        // Populate image grid
+        mdPopulateImageGrid();
+    }
+
+    function mdPopulateImageGrid() {
+        var grid = document.getElementById('md-image-grid');
+        if (!grid) return;
+        var images = window.siteImages || [];
+        if (images.length === 0) {
+            grid.innerHTML = '<p class="md-image-empty">No images registered. Add filenames to <code>siteImages</code> in data.js.</p>';
+            return;
+        }
+        grid.innerHTML = images.map(function(img) {
+            return '<div class="md-image-thumb" data-file="' + img.file + '" data-label="' + img.label + '">' +
+                '<img src="' + img.file + '" alt="' + img.label + '" onerror="this.parentNode.style.opacity=0.3">' +
+                '<span>' + img.label + '</span>' +
+                '</div>';
+        }).join('');
+        grid.querySelectorAll('.md-image-thumb').forEach(function(thumb) {
+            thumb.addEventListener('click', function() {
+                var file = thumb.dataset.file;
+                var label = thumb.dataset.label;
+                var ta = document.getElementById('admin-section-content');
+                var start = ta.selectionStart;
+                var before = ta.value.substring(0, start);
+                var after = ta.value.substring(ta.selectionEnd);
+                var insert = '![' + label + '](' + file + ')';
+                ta.value = before + insert + after;
+                ta.selectionStart = ta.selectionEnd = start + insert.length;
+                ta.focus();
+                mdUpdatePreview();
+                document.getElementById('md-image-picker').style.display = 'none';
+            });
+        });
+    }
+
+    function mdToggleImagePicker() {
+        var picker = document.getElementById('md-image-picker');
+        if (!picker) return;
+        var isOpen = picker.style.display !== 'none';
+        picker.style.display = isOpen ? 'none' : 'block';
     }
 
     function saveCurrentSection() {
@@ -280,7 +383,7 @@
 
         // Update in memory
         const kit = window.roboticsKits.find(k => k.id === editingKit);
-        const sec = kit?.sections.find(s => s.id === editingSection);
+        const sec = findSection(kit, editingSection);
         if (sec) { sec.label = label; sec.content = content; }
 
         // Persist override
@@ -299,30 +402,65 @@
         const kit = window.roboticsKits.find(k => k.id === kitId);
         if (!kit) return;
         const list = document.getElementById('admin-section-list');
-        list.innerHTML = kit.sections.map((sec, i) => `
-            <div class="admin-section-item" data-id="${sec.id}" data-index="${i}">
-                <span class="drag-handle">⠿</span>
-                <span class="section-item-label">${sec.label}</span>
-                ${sec.internal ? '<span class="badge-internal">🔒 Internal</span>' : '<span class="badge-public">🌐 Public</span>'}
-                <button class="btn-icon-danger remove-section-btn" data-kit="${kitId}" data-sec="${sec.id}" title="Remove section">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
-                </button>
-            </div>
-        `).join('');
 
-        // Remove section
+        // Populate parent selector
+        const parentSel = document.getElementById('new-section-parent');
+        if (parentSel) {
+            parentSel.innerHTML = '<option value="">&#128193; Top-level</option>' +
+                kit.sections.map(s => `<option value="${s.id}">&#8627; ${s.label}</option>`).join('');
+        }
+
+        let html = '';
+        kit.sections.forEach((sec, i) => {
+            html += `
+                <div class="admin-section-item" data-id="${sec.id}" data-index="${i}">
+                    <span class="drag-handle">⠿</span>
+                    <span class="section-item-label">${sec.label}</span>
+                    ${sec.internal ? '<span class="badge-internal">🔒 Internal</span>' : '<span class="badge-public">🌐 Public</span>'}
+                    <button class="btn-icon-danger remove-section-btn" data-kit="${kitId}" data-sec="${sec.id}" data-parent="" title="Remove section">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
+                    </button>
+                </div>`;
+            // Render children indented
+            if (sec.children && sec.children.length > 0) {
+                sec.children.forEach((child, ci) => {
+                    html += `
+                        <div class="admin-section-item admin-section-child" data-id="${child.id}" data-parent="${sec.id}">
+                            <span class="drag-handle" style="opacity:.3">⠿</span>
+                            <span class="sub-bullet-admin">↳</span>
+                            <span class="section-item-label">${child.label}</span>
+                            ${child.internal ? '<span class="badge-internal">🔒 Internal</span>' : '<span class="badge-public">🌐 Public</span>'}
+                            <button class="btn-icon-danger remove-section-btn" data-kit="${kitId}" data-sec="${child.id}" data-parent="${sec.id}" title="Remove subsection">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
+                            </button>
+                        </div>`;
+                });
+            }
+        });
+        list.innerHTML = html;
+
+        // Remove section/child handlers
         list.querySelectorAll('.remove-section-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                const kitId = btn.dataset.kit;
+                const kId = btn.dataset.kit;
                 const secId = btn.dataset.sec;
-                const kit = window.roboticsKits.find(k => k.id === kitId);
-                if (!kit) return;
-                if (!confirm(`Remove section "${secId}" from ${kit.name}? This cannot be undone.`)) return;
-                kit.sections = kit.sections.filter(s => s.id !== secId);
-                if (savedOverrides[kitId]) delete savedOverrides[kitId][secId];
-                saveOverrides();
-                renderSectionList(kitId);
-                if (window.refreshKitPanel) window.refreshKitPanel(kitId);
+                const parentId = btn.dataset.parent;
+                const k = window.roboticsKits.find(k => k.id === kId);
+                if (!k) return;
+                if (!confirm(`Remove "${secId}"? This cannot be undone.`)) return;
+                if (parentId) {
+                    // Remove from parent's children
+                    const parent = k.sections.find(s => s.id === parentId);
+                    if (parent && parent.children) {
+                        parent.children = parent.children.filter(c => c.id !== secId);
+                    }
+                } else {
+                    k.sections = k.sections.filter(s => s.id !== secId);
+                }
+                if (savedOverrides[kId]) delete savedOverrides[kId][secId];
+                fetch(`/api/overrides/${kId}/${secId}`, { method: 'DELETE' }).catch(console.warn);
+                renderSectionList(kId);
+                if (window.refreshKitPanel) window.refreshKitPanel(kId);
             });
         });
     }
@@ -361,14 +499,28 @@
         const idInput = document.getElementById('new-section-id');
         const labelInput = document.getElementById('new-section-label');
         const typeSelect = document.getElementById('new-section-type');
+        const parentSel = document.getElementById('new-section-parent');
         const id = idInput.value.trim().replace(/\s+/g, '-').toLowerCase();
         const label = labelInput.value.trim();
+        const parentId = parentSel ? parentSel.value : '';
         if (!id || !label) { alert('Please enter both an ID and a label.'); return; }
         const kit = window.roboticsKits.find(k => k.id === kitId);
         if (!kit) return;
-        if (kit.sections.find(s => s.id === id)) { alert(`Section "${id}" already exists.`); return; }
         const isInternal = typeSelect.value === 'internal';
-        kit.sections.push({ id, label, internal: isInternal, content: `<h2>${label}</h2>\n<p>Add content here.</p>` });
+        const newSec = { id, label, internal: isInternal, content: `<h2>${label}</h2>
+<p>Add content here.</p>` };
+
+        if (parentId) {
+            const parent = kit.sections.find(s => s.id === parentId);
+            if (!parent) { alert('Parent section not found.'); return; }
+            if (!parent.children) parent.children = [];
+            if (parent.children.find(c => c.id === id)) { alert(`Subsection "${id}" already exists.`); return; }
+            parent.children.push(newSec);
+        } else {
+            if (kit.sections.find(s => s.id === id)) { alert(`Section "${id}" already exists.`); return; }
+            kit.sections.push(newSec);
+        }
+
         if (window.refreshKitPanel) window.refreshKitPanel(kitId);
         idInput.value = '';
         labelInput.value = '';
@@ -378,8 +530,8 @@
     // ===========================
     // INIT ADMIN UI
     // ===========================
-    function initAdmin() {
-        loadOverrides();
+    async function initAdmin() {
+        await loadOverrides();
         applyOverrides();
 
         const loginModal = createLoginModal();
@@ -702,6 +854,7 @@
         else if (action === 'ul')        { insert = sel ? sel.split('\n').map(function(l){return '- '+l;}).join('\n') : '- List item'; cursor = insert.length; }
         else if (action === 'ol')        { insert = sel ? sel.split('\n').map(function(l,i){return (i+1)+'. '+l;}).join('\n') : '1. List item'; cursor = insert.length; }
         else if (action === 'link')      { var url = prompt('URL:', 'https://'); if (!url) return; insert = '[' + (sel || 'link text') + '](' + url + ')'; cursor = insert.length; }
+        else if (action === 'image')     { mdToggleImagePicker(); return; }
         else if (action === 'codeblock') { insert = '```\n' + (sel || 'code here') + '\n```'; cursor = insert.length; }
         else if (action === 'hr')        { insert = '\n---\n'; cursor = insert.length; }
 
