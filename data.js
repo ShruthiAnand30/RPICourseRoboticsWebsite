@@ -1319,7 +1319,7 @@ for i in range(0, height-2):
                 <li> Go to your TA's or Professor with any questions or clarifications. </li>
                 <ul>
                 `
-            },,
+            },
             {
                             
                 id: 'getting-started',
@@ -1468,163 +1468,109 @@ for i in range(0, height-2):
                 label: 'Basic Examples (Python)',
                 content: `<h2>Basic Examples (Python)</h2><p>Select a topic from the sidebar to get started.</p>`,
                 children: [
-                        {
-                                id: 'motor-control',
-                                label: 'Motor Control',
-                                content: `<h1>Motor Control</h1>
-                                    <h3>1. Ensure that Raspbot_Lib library functions is properly installed.</h3>
-                                    <p>Raspbot Driver function are required. <br>
-                                    If you do not have it properly install, click the link below. <br>
-                                    <a link href="https://www.yahboom.net/study/Raspbot" target = "_blank" style = "color: blue";> Library Installation Link</a>
-                                    </p>
+                    {
+                        id: 'motor-control',
+                        label: 'Motor Control',
+                        content: `
+                            <h2>Motor Control</h2>
 
-                                    <h3>2. Core functions </h3>
-                                    <p>This repository is made with Raspbot v2 in mind, so you generally be using McLumk_Wheel_Sports library functions for movement as they are prebuilt functions made with Mecanum wheels in mind.<br>
-                                    Mecanum wheel have a roller containder a smaller roller placed at 45% degreess disbursting force as depicted by the image below. <br>
-                                    <img src="Images/Raspbot/Mecanum_force.png" alt = "Mecanum_force" width ="500"><br>
-                                    But if you want to apply this to Raspbot in general or use costum angles for movement, you will be using the core functions.<br>
-                                    The following image display the where each motor is and their corresponding ID.<br>
-                                    <img src="Images/Raspbot/Motor_Display.png" alt = "Mecanum_force" width ="500"><br>
-                                    If your confused at what your looking at, use these relationships<br>
-                                    Front left = M1<br>
-                                    Front right = M2<br>
-                                    Back left = M3<br>
-                                    Back right = M4</p>
-                                    <p>Methods:</p>
-                                    <pre>Ctrl_Muto(int motor_id, int motor_speed)</pre>
+                            <h3>1. Install the Raspbot_Lib library</h3>
+                            <p>The Raspbot driver functions are required. If you do not have it installed, visit the link below.</p>
+                            <p><a href="https://www.yahboom.net/study/Raspbot" target="_blank">Library Installation Link</a></p>
 
-                                    <p>The method preforms a action withh the corresponding motor ID.<br>
-                                    The motor_speed is ranges form -255 to 255.<br>
-                                    With positive speed to rotate forward, negative speed to rotate backwards, and 0 to stop.</p>
+                            <h3>2. Core functions</h3>
+                            <p>This guide is written for Raspbot V2 with Mecanum wheels. Mecanum wheels have angled rollers that distribute force diagonally, allowing the robot to move in any direction.</p>
+                            <img src="Images/Raspbot/Mecanum_force.png" alt="Mecanum wheel force diagram" style="max-width:500px;">
+                            <p>The image below shows each motor and its corresponding ID.</p>
+                            <img src="Images/Raspbot/Motor_Display.png" alt="Motor ID diagram" style="max-width:500px;">
+                            <ul>
+                                <li>Front left = M1</li>
+                                <li>Front right = M2</li>
+                                <li>Back left = M3</li>
+                                <li>Back right = M4</li>
+                            </ul>
 
-                                    <pre>Ctrl_Car(int motor_id, motor_dir, int motor_speed):</pre>
-                                    <p>The function accomplish the same task as Ctrl_Muto so use methods based on preference.<br>
-                                    motor_dir can be 0(forward rotation) or 1(reverse rotation).<br>
-                                    The motor_speed is ranges form 0 to 255.<br> 
+                            <p><strong>Method 1:</strong></p>
+                            <pre><code>Ctrl_Muto(int motor_id, int motor_speed)</code></pre>
+                            <p>Controls the motor with the given ID. <code>motor_speed</code> ranges from -255 to 255: positive = forward, negative = backward, 0 = stop.</p>
 
-                                    You can use both function interchangably like this. <br>
-                                    Ctrl_Muto(M2, -100) is the equalivalent to Ctrl_Car(M2, 1, 100).<br>
-                                    <br>
-                                    while Ctrl_Muto and Ctrl_Car only controls one motor, calling the method 4 times allow you to move the raspbot in cretain direction.<br>
-                                    Refer to this table to make movement using Ctrl_Muto. Note: this table uses Mecanum wheels<br>
-                                    The speed must range form -255 to 255</p>
+                            <p><strong>Method 2:</strong></p>
+                            <pre><code>Ctrl_Car(int motor_id, int motor_dir, int motor_speed)</code></pre>
+                            <p><code>motor_dir</code> is 0 (forward) or 1 (reverse). <code>motor_speed</code> ranges from 0 to 255.</p>
+                            <p>Both methods are interchangeable. For example, <code>Ctrl_Muto(M2, -100)</code> is equivalent to <code>Ctrl_Car(M2, 1, 100)</code>.</p>
+                            <p>Call either method 4 times (once per motor) to move the robot in a direction. Refer to the table below — speeds must be in the range -255 to 255.</p>
 
-                                    <table class = "motor_table">
-                                        <thead>
-                                            <th scope = "col">Motion</th>
-                                            <th scope = "col">M1</th>
-                                            <th scope = "col">M2</th>
-                                            <th scope = "col">M3</th>
-                                            <th scope = "col">M4</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Forward</td>
-                                                <td>+</td>
-                                                <td>+</td>
-                                                <td>+</td>
-                                                <td>+</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Backward</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Left Translation</td>
-                                                <td>-</td>
-                                                <td>+</td>
-                                                <td>+</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Right Translation</td>
-                                                <td>+</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>+</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Left Front</td>
-                                                <td>0</td>
-                                                <td>+</td>
-                                                <td>+</td>
-                                                <td>0</td>
-                                            </tr>
-                                            <tr>
-                                                <td>left Rear</td>
-                                                <td>+</td>
-                                                <td>0</td>
-                                                <td>0</td>
-                                                <td>+</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Right Front</td>
-                                                <td>+</td>
-                                                <td>0</td>
-                                                <td>0</td>
-                                                <td>+</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Right Rear</td>
-                                                <td>0</td>
-                                                <td>+</td>
-                                                <td>+</td>
-                                                <td>0</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Counterclockwise Rotation<br>(Left Rotation)</td>
-                                                <td>-</td>
-                                                <td>+</td>
-                                                <td>-</td>
-                                                <td>+</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Clockwise Rotation<br>(Right rotation)</td>
-                                                <td>+</td>
-                                                <td>-</td>
-                                                <td>+</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Stop</td>
-                                                <td>0</td>
-                                                <td>0</td>
-                                                <td>0</td>
-                                                <td>0</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                            <table class="motor_table">
+                                <thead>
+                                    <tr>
+                                        <th>Motion</th>
+                                        <th>M1</th>
+                                        <th>M2</th>
+                                        <th>M3</th>
+                                        <th>M4</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Forward</td><td>+</td><td>+</td><td>+</td><td>+</td></tr>
+                                    <tr><td>Backward</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                                    <tr><td>Left Translation</td><td>-</td><td>+</td><td>+</td><td>-</td></tr>
+                                    <tr><td>Right Translation</td><td>+</td><td>-</td><td>-</td><td>+</td></tr>
+                                    <tr><td>Left Front</td><td>0</td><td>+</td><td>+</td><td>0</td></tr>
+                                    <tr><td>Left Rear</td><td>+</td><td>0</td><td>0</td><td>+</td></tr>
+                                    <tr><td>Right Front</td><td>+</td><td>0</td><td>0</td><td>+</td></tr>
+                                    <tr><td>Right Rear</td><td>0</td><td>+</td><td>+</td><td>0</td></tr>
+                                    <tr><td>Counterclockwise (Left Rotation)</td><td>-</td><td>+</td><td>-</td><td>+</td></tr>
+                                    <tr><td>Clockwise (Right Rotation)</td><td>+</td><td>-</td><td>+</td><td>-</td></tr>
+                                    <tr><td>Stop</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                                </tbody>
+                            </table>
 
-                                    <h3>3. Sample Code with Raspbot Standard library</h3>
-                                    <pre></pre>
+                            <h3>3. Sample code — Raspbot standard library</h3>
+                            <pre><code>from Raspbot_Lib import Raspbot
+import time
 
-                                    <h3>4. McLumk_Wheel_Sports library functions</h3>
-                                    <p>You do not have to install a new library because it comes with Raspbot_lib.<br>
-                                    Instead of manually coding motor movement using the functions listed under Core functions.<br>
-                                    McLumk_Wheel_Sports library already cotains code for general movement with Mecanum wheels.<br>
-                                    The following list are library function that are controlled by the parameter speed. <br>
-                                    The name of the method implies the direction the bot would move in.<br>
-                                    The speed is need to be form 0 to 255. With 0 to stop and bigger number resulting in higher speed.</p>
+bot = Raspbot()
 
-                                    <pre>move_forward(int speed)
-                                    move_backward(int speed)
-                                    move_right(int speed)
-                                    move_left(int speed)
-                                    move_diagonal_left_front(int speed)
-                                    move_diagonal_right_front(int speed)
-                                    move_diagonal_left_back(int speed)
-                                    move_diagonal_right_back(int speed)</pre>
+# Move forward for 1 second then stop
+bot.Ctrl_Muto(1, 150)
+bot.Ctrl_Muto(2, 150)
+bot.Ctrl_Muto(3, 150)
+bot.Ctrl_Muto(4, 150)
+time.sleep(1)
 
-                                    <p>These next 2 function are for rotation.</p>
-                                    <pre>rotate_right(speed)
-                                    rotate_left(speed)</pre>
+bot.Ctrl_Muto(1, 0)
+bot.Ctrl_Muto(2, 0)
+bot.Ctrl_Muto(3, 0)
+bot.Ctrl_Muto(4, 0)</code></pre>
 
-                                    <h3>Sample code with McLumk_Wheel_Sports library functions</h3>
-                                    <pre></pre>
-                                `
+                            <h3>4. McLumk_Wheel_Sports library functions</h3>
+                            <p>This library is included with <code>Raspbot_lib</code> — no separate installation needed. It provides ready-made movement functions for Mecanum wheels. Each function takes a <code>speed</code> parameter from 0 to 255 (0 = stop, higher = faster).</p>
+                            <pre><code>move_forward(int speed)
+move_backward(int speed)
+move_right(int speed)
+move_left(int speed)
+move_diagonal_left_front(int speed)
+move_diagonal_right_front(int speed)
+move_diagonal_left_back(int speed)
+move_diagonal_right_back(int speed)
+rotate_right(int speed)
+rotate_left(int speed)</code></pre>
+
+                            <h3>5. Sample code — McLumk_Wheel_Sports library</h3>
+                            <pre><code>from Raspbot_Lib import Raspbot
+from McLumk_Wheel_Sports import McLumk
+import time
+
+bot = Raspbot()
+wheels = McLumk(bot)
+
+# Move forward for 1 second, then turn right for 0.5s, then stop
+wheels.move_forward(150)
+time.sleep(1)
+wheels.rotate_right(100)
+time.sleep(0.5)
+wheels.move_forward(0)</code></pre>
+                        `
                     },
                     {
                         id: 'be-basic-move',
@@ -1657,124 +1603,79 @@ for i in range(0, height-2):
                         content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`
                     },
                     {
-                                    
                         id: 'Camera',
                         label: 'Camera',
-                        content: `<h1>Camera</h1>
-                        <h3>1. OPenCV</h3>
-                        <p>OpenCV stands for Open source Computer Vision Library.<br>
-                        OpenCV library contains methods for computational vision using the primary colors R,G,B.<br>
-                        While OpenCV may contain functions that displays images as well as images processing with target detection, we will primarily focus on method that help boot up a camera for this page.<br>
-                        As such, if you want to dive deeper into OpenCV, you may want to check out their offical page: 
-                        <a link href="https://opencv.org/" target = "_blank" style = "color: blue"; >OpenCV</a>.<br>
-                        For Installation of OpenCV Library visit: 
-                        <a link href="https://docs.opencv.org/4.x/d0/d3d/tutorial_general_install.html" target = "_blank" style = "color: blue"; >OpenCV Installation</a>.<br>
-                        For specifically all method related to this camera page visit: 
-                        <a link href="https://docs.opencv.org/3.4/d8/dfe/classcv_1_1VideoCapture.html" target = "_blank" style = "color: blue"; >OpenCV Methods</a>.<br>
-                        </p>
+                        content: `
+                            <h2>Camera</h2>
 
-                        <h3>2.Core functions </h3>
-                        <pre>cv2.VideoCapture(int argument)</pre>
+                            <h3>1. OpenCV</h3>
+                            <p>OpenCV (Open Source Computer Vision Library) provides methods for computational vision using RGB color data. This page focuses on the functions needed to connect to and read from the Raspbot camera. For deeper exploration, see the links below.</p>
+                            <ul>
+                                <li><a href="https://opencv.org/" target="_blank">OpenCV Official Site</a></li>
+                                <li><a href="https://docs.opencv.org/4.x/d0/d3d/tutorial_general_install.html" target="_blank">OpenCV Installation Guide</a></li>
+                                <li><a href="https://docs.opencv.org/3.4/d8/dfe/classcv_1_1VideoCapture.html" target="_blank">VideoCapture API Reference</a></li>
+                            </ul>
 
-                        <p>To connect to default camera or Raspberry Pi video, use set argument = 0.</p>
-                        
-                        <pre>camera.set(int setting, int numeric_value)</pre>
+                            <h3>2. Core functions</h3>
 
-                        <p>These are common configuration you can set if your camera seems off.<br>
-                        the number on the left represent what your modifying and what you put in place of settings.<br>
-                        We've listed the common configuretion. Not recommend to modify setting outside of these value.<br>
-                        Note: Not all method are supported by the camera. So you might not be able to modify the hue, saturation, and etc.</p>
+                            <p><code>cv2.VideoCapture(argument)</code> — Opens a camera or video source. Pass <code>0</code> to connect to the default camera or Raspberry Pi video device.</p>
 
-                        <table class = "camera_table">
-                            <thead>
-                                <tr>
-                                    <th scope = "col">Setting value</th>
-                                    <th scope = "col">Setting name</th>
-                                    <th scope = "col">Functionality</th>
-                                    <th scope = "col">Common Values</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>3</td>
-                                    <td>CV_CAP_PROP_FRAME_WIDTH</td>
-                                    <td>Width in frames</td>
-                                    <td>1920</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>CV_CAP_PROP_FRAME_HEIGHT</td>
-                                    <td>Height in frames</td>
-                                    <td>1080</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>CV_CAP_PROP_FPS</td>
-                                    <td>Frame Rate</td>
-                                    <td>30</td>
-                                </tr>
-                                <tr>
-                                    <td>10</td>
-                                    <td>CV_CAP_PROP_BRIGHTNESS</td>
-                                    <td>Brightness of image</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>11</td>
-                                    <td>CV_CAP_PROP_CONTRAST</td>
-                                    <td>Contrast of image</td>
-                                    <td>40</td>
-                                </tr>
-                                <tr>
-                                    <td>12</td>
-                                    <td>CV_CAP_PROP_SATURATION</td>
-                                    <td>Saturation of image</td>
-                                    <td>50</td>
-                                </tr>
-                                <tr>
-                                    <td>13</td>
-                                    <td>CV_CAP_PROP_HUE</td>
-                                    <td>Hue of images</td>
-                                    <td>50</td>
-                                </tr>
-                                <tr>
-                                    <td>15</td>
-                                    <td>CV_CAP_PROP_EXPOSURE</td>
-                                    <td>Exposure</td>
-                                    <td>50</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        
-                        <p>You may have notice that we skipped some setting value.<br>
-                        That because there are other setting that exist on OpenCV but doesn't modify them unless you need to.<br>
-                        To find all camera setting you can adjust visit: 
-                        <a link href="https://docs.opencv.org/3.4/d4/d15/group__videoio__flags__base.html#ggaeb8dd9c89c10a5c63c139bf7c4f5704da7c2fa550ba270713fca1405397b90ae0" target = "_blank" style = "color: blue"; >OpenCV</a>
-                        </p> 
+                            <p><code>camera.set(setting, numeric_value)</code> — Configures camera properties. The table below lists the most common settings. Not all settings are supported by every camera (e.g. hue and saturation may not apply).</p>
 
-                        <pre>camera.isOpened()</pre>
-                        <p>Boolean function that returns true if success and false otherwise</p>
+                            <table class="camera_table">
+                                <thead>
+                                    <tr>
+                                        <th>Setting value</th>
+                                        <th>Setting name</th>
+                                        <th>Functionality</th>
+                                        <th>Common value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>3</td><td>CV_CAP_PROP_FRAME_WIDTH</td><td>Frame width</td><td>1920</td></tr>
+                                    <tr><td>4</td><td>CV_CAP_PROP_FRAME_HEIGHT</td><td>Frame height</td><td>1080</td></tr>
+                                    <tr><td>5</td><td>CV_CAP_PROP_FPS</td><td>Frame rate</td><td>30</td></tr>
+                                    <tr><td>10</td><td>CV_CAP_PROP_BRIGHTNESS</td><td>Brightness</td><td>1</td></tr>
+                                    <tr><td>11</td><td>CV_CAP_PROP_CONTRAST</td><td>Contrast</td><td>40</td></tr>
+                                    <tr><td>12</td><td>CV_CAP_PROP_SATURATION</td><td>Saturation</td><td>50</td></tr>
+                                    <tr><td>13</td><td>CV_CAP_PROP_HUE</td><td>Hue</td><td>50</td></tr>
+                                    <tr><td>15</td><td>CV_CAP_PROP_EXPOSURE</td><td>Exposure</td><td>50</td></tr>
+                                </tbody>
+                            </table>
+                            <p>Other settings exist in OpenCV but should not be modified unless necessary. See the <a href="https://docs.opencv.org/3.4/d4/d15/group__videoio__flags__base.html" target="_blank">full list of camera properties</a>.</p>
 
-                        <pre>ret,frame = camera.read()</pre>
-                        <p>Read the video a frame at a time and return information storted in variable ret and frame.<br>
-                        Variable rat is a boolean value that return true if it read the file to the end and false otherwise.<br>
-                        Variable frame is the image processed in a single frame represented though a 3-D matrix</p>
+                            <p><code>camera.isOpened()</code> — Returns <code>True</code> if the camera opened successfully, <code>False</code> otherwise.</p>
 
-                        <pre>cv2.waitKey()</pre>
-                        <p>Put a postive numerical value to to cause a delay.<br>
-                        cv2.waitKey(1) causes a delay of 1ms between each frame.<br>
-                        Avoid setting a large number in waitKey like 1000 or it might feel like it's stuck or lagging.<br>
-                        Setting the value to 0 would make the video pause on it's current frame.</p>
+                            <p><code>ret, frame = camera.read()</code> — Reads one frame from the camera. <code>ret</code> is a boolean that is <code>True</code> on success. <code>frame</code> is a 3D matrix (height × width × 3 color channels) representing the image.</p>
 
-                        <pre>camera.release() and destroyAllWindows() </pre>
-                        <p>camera.release() releases the video.<br>
-                        destroyAllWindows() closes all image windows.<br>
-                        When runing any code involving getting and opening camera file, always run the program until completion.<br>
-                        If you don't run the program to camera.release and destroyAllWindows, it will hold the camera file in the background.<br>
-                        This will cause future program to be denied access when searching for the camera file.</p>
+                            <p><code>cv2.waitKey(delay)</code> — Waits for a key press. Pass a positive number for a delay in milliseconds (e.g. <code>waitKey(1)</code> = 1 ms between frames). Passing <code>0</code> pauses on the current frame indefinitely. Avoid large values like 1000 as they cause noticeable lag.</p>
 
-                        <h3>Sample code with OpenCV functions to open camera</h3>
-                        <pre></pre>`        
+                            <p><code>camera.release()</code> and <code>cv2.destroyAllWindows()</code> — Always call these at the end of any script that uses the camera. If you stop a script early without releasing the camera, it stays locked in the background and future programs will be denied access.</p>
+
+                            <h3>3. Sample code — opening the camera with OpenCV</h3>
+                            <pre><code>import cv2
+
+camera = cv2.VideoCapture(0)
+
+# Optional: configure resolution and frame rate
+camera.set(3, 1280)   # width
+camera.set(4, 720)    # height
+camera.set(5, 30)     # fps
+
+if not camera.isOpened():
+    print("Error: Could not open camera.")
+else:
+    while True:
+        ret, frame = camera.read()
+        if not ret:
+            break
+        cv2.imshow("Raspbot Camera", frame)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+camera.release()
+cv2.destroyAllWindows()</code></pre>
+                        `
                     },
                 ],
                 content: `<h2>Basic Examples (Python)</h2><p>Select a topic from the sidebar to get started.</p>`

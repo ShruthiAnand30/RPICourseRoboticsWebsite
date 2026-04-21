@@ -134,6 +134,7 @@
         }
 
         kit.sections.forEach((sec) => {
+            if (!sec) return;
             if (sec.internal && !isLoggedIn) return;
             const isGroup = sec.group;
 
@@ -166,9 +167,21 @@
         let blocks = '';
         let first = true;
 
+        function dedentPres(html) {
+            return html.replace(/<pre>([\s\S]*?)<\/pre>/g, (_, inner) => {
+                const lines = inner.split('');
+                const nonEmpty = lines.filter(l => l.trim().length > 0);
+                if (!nonEmpty.length) return '<pre>' + inner + '</pre>';
+                const indent = Math.min(...nonEmpty.map(l => l.match(/^(\s*)/)[1].length));
+                const dedented = lines.map(l => l.slice(indent)).join(' ').replace(/^/, '').replace(/$/, '');
+                return '<pre>' + dedented + '</pre>';
+            });
+        }
+
         function renderBlock(sec) {
+            if (!sec) return;
             if (sec.internal && !isLoggedIn) return;
-            blocks += `<div class="doc-section${first ? ' active' : ''}" id="doc-${kit.id}-${sec.id}">${sec.content}</div>`;
+            blocks += `<div class="doc-section${first ? ' active' : ''}" id="doc-${kit.id}-${sec.id}">${dedentPres(sec.content)}</div>`;
             first = false;
             if (sec.children) sec.children.forEach(renderBlock);
         }
