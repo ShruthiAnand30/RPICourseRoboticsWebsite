@@ -57,10 +57,6 @@
             <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1735494035464-94fdd0f8e780?w=1920&q=80')"></div>
             <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1544191046-397b734b0891?w=1920&q=80')"></div>
             <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1581092335878-2d9ff86ca2bf?w=1920&q=80')"></div>
-            <div class="hero-slide" style="background-image: url('Images/index/hero_1.jpg')"></div>
-            <div class="hero-slide" style="background-image: url('Images/index/hero_2.jpg')"></div>
-            <div class="hero-slide" style="background-image: url('Images/index/hero_3.jpg')"></div>
-            <div class="hero-slide" style="background-image: url('Images/index/hero_4.jpg')"></div>
             <div class="hero-overlay"></div>
         </div>
         <div class="container hero-container">
@@ -82,24 +78,17 @@
                         </button>
                     </div>
                     <div class="filter-controls" id="filter-controls" style="display:none;">
-                        <input type="checkbox" id="show-filters" style="display:none;">
-                        <label for="show-filters" class="filter-toggle-btn">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <span class="filter-label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;vertical-align:middle;">
                                 <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
                             </svg>
-                            Filter by Kit
-                            <span class="filter-count" id="filter-count" style="display:none;"></span>
-                        </label>
+                            Filter:
+                        </span>
+                        <label class="filter-option-inline"><input type="checkbox" class="kit-filter" value="dofbot" checked><span>DOFBOT</span></label>
+                        <label class="filter-option-inline"><input type="checkbox" class="kit-filter" value="rosmaster" checked><span>ROSMASTER</span></label>
+                        <label class="filter-option-inline"><input type="checkbox" class="kit-filter" value="raspbot" checked><span>Raspbot</span></label>
+                        <label class="filter-option-inline"><input type="checkbox" class="kit-filter" value="dogzilla" checked><span>Dogzilla</span></label>
                         <button class="clear-filters-btn" id="clear-filters" style="display:none;">Clear Filters</button>
-                        <div class="filter-dropdown">
-                            <h4>Filter by Kit:</h4>
-                            <div class="filter-options">
-                                <label class="filter-option"><input type="checkbox" class="kit-filter" value="dofbot" checked><span>DOFBOT-JetsonNANO</span></label>
-                                <label class="filter-option"><input type="checkbox" class="kit-filter" value="rosmaster" checked><span>ROSMASTER X3</span></label>
-                                <label class="filter-option"><input type="checkbox" class="kit-filter" value="raspbot" checked><span>Raspbot V2</span></label>
-                                <label class="filter-option"><input type="checkbox" class="kit-filter" value="dogzilla" checked><span>Dogzilla</span></label>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -155,6 +144,8 @@
 
     <footer class="main-footer">
     </footer>
+
+
 
     <script src="data.js"></script>
     <script src="auth.js"></script>

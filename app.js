@@ -347,7 +347,7 @@
     const clearBtn = document.getElementById('clear-btn');
     const filterControls = document.getElementById('filter-controls');
     const kitFilters = document.querySelectorAll('.kit-filter');
-    const filterCount = document.getElementById('filter-count');
+    const filterCount = document.getElementById('filter-count'); // element removed - inline filters now
     const clearFiltersBtn = document.getElementById('clear-filters');
     const searchResultsList = document.getElementById('search-results-list');
     const noResults = document.getElementById('no-results');
@@ -373,8 +373,7 @@
         const activeFilters = Array.from(kitFilters).filter(cb => cb.checked).map(cb => cb.value);
         const uncheckedCount = Array.from(kitFilters).filter(cb => !cb.checked).length;
 
-        filterCount.textContent = activeFilters.length;
-        filterCount.style.display = uncheckedCount > 0 ? 'inline-flex' : 'none';
+        if (filterCount) { filterCount.textContent = activeFilters.length; filterCount.style.display = uncheckedCount > 0 ? 'inline-flex' : 'none'; }
         clearFiltersBtn.style.display = uncheckedCount > 0 ? 'inline-flex' : 'none';
 
         // Search across kit name, description, tags, and each section's content text
@@ -464,7 +463,7 @@
 
     function clearFilters() {
         kitFilters.forEach(cb => cb.checked = true);
-        filterCount.style.display = 'none';
+        if (filterCount) filterCount.style.display = 'none';
         clearFiltersBtn.style.display = 'none';
         performSearch();
     }
