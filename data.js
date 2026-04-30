@@ -1214,11 +1214,6 @@ for i in range(0, height-2):
         tags: ['Raspberry Pi 5', 'ROS2 Humble', 'Ultrasonic', 'Articulated Camera'],
         sections: [
             {
-                id: 'important-notes',
-                label: 'Important Notes',
-                content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`
-            },
-            {
                 id: 'overview',
                 label: 'Overview',
                 content: `
@@ -1465,8 +1460,8 @@ for i in range(0, height-2):
             },
             {
                 id: 'basic-examples',
-                label: 'Basic Examples (Python)',
-                content: `<h2>Basic Examples (Python)</h2><p>Select a topic from the sidebar to get started.</p>`,
+                label: 'Basic Examples',
+                content: `<h2>Basic Examples</h2><p>Select a topic from the sidebar to get started.</p>`,
                 children: [
                     {
                         id: 'motor-control',
@@ -1603,7 +1598,7 @@ wheels.move_forward(0)</code></pre>
                         content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`
                     },
                     {
-                        id: 'Camera',
+                        id: 'camera',
                         label: 'Camera',
                         content: `
                             <h2>Camera</h2>
@@ -1678,7 +1673,6 @@ cv2.destroyAllWindows()</code></pre>
                         `
                     },
                 ],
-                content: `<h2>Basic Examples (Python)</h2><p>Select a topic from the sidebar to get started.</p>`
             },
             {
                 id: 'advanced-examples',
@@ -1688,28 +1682,26 @@ cv2.destroyAllWindows()</code></pre>
                     {
                         id: 'ae-python',
                         label: 'Python',
-                        content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`,
+                        content: `<h2>Python Examples</h2><p>Select a topic from the sidebar to get started.</p>`,
                         children: [
                             {
                                 id: 'ae-python-ultrasonic',
                                 label: 'Ultrasonic',
                                 content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`
                             }
-                        ],
-                content: `<h2>Python Examples</h2><p>Select a topic from the sidebar to get started.</p>`
+                        ]
                     },
                     {
                         id: 'ae-ros',
                         label: 'ROS',
-                        content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`,
+                        content: `<h2>ROS Examples</h2><p>Select a topic from the sidebar to get started.</p>`,
                         children: [
                             {
                                 id: 'ae-ros-gesture',
                                 label: 'Gesture Recognition',
                                 content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`
                             }
-                        ],
-                content: `<h2>Ultrasonic</h2><p>Select a topic from the sidebar to get started.</p>`
+                        ]
                     }
                 ]
             },
