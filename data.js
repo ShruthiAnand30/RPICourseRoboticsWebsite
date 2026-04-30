@@ -1461,7 +1461,7 @@ for i in range(0, height-2):
             {
                 id: 'basic-examples',
                 label: 'Basic Examples',
-                content: `<h2>Basic Examples</h2><p>Select a topic from the sidebar to get started.</p>`,
+                                content: `<h2>Preparation</h2><p>Select a topic from the sidebar to get started.</p>`,
                 children: [
                     {
                         id: 'motor-control',
@@ -1598,7 +1598,7 @@ wheels.move_forward(0)</code></pre>
                         content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`
                     },
                     {
-                        id: 'camera',
+                        id: 'Camera',
                         label: 'Camera',
                         content: `
                             <h2>Camera</h2>
@@ -1682,7 +1682,7 @@ cv2.destroyAllWindows()</code></pre>
                     {
                         id: 'ae-python',
                         label: 'Python',
-                        content: `<h2>Python Examples</h2><p>Select a topic from the sidebar to get started.</p>`,
+                        content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`,
                         children: [
                             {
                                 id: 'ae-python-ultrasonic',
@@ -1694,7 +1694,7 @@ cv2.destroyAllWindows()</code></pre>
                     {
                         id: 'ae-ros',
                         label: 'ROS',
-                        content: `<h2>ROS Examples</h2><p>Select a topic from the sidebar to get started.</p>`,
+                        content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`,
                         children: [
                             {
                                 id: 'ae-ros-gesture',
@@ -1730,8 +1730,7 @@ cv2.destroyAllWindows()</code></pre>
                         label: 'Docker',
                         content: `<div class="coming-soon-banner">🚧 Coming Soon</div>`
                     }
-                ],
-                content: `<h2>Gesture Recognition</h2><p>Select a topic from the sidebar to get started.</p>`
+                ]
             },
             {
                 id: 'professor-notes',
